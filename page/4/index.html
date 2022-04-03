@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html lang="tr-TR">
+<head>
+<link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>SelamCanım</title>
+      <style>
+    a {
+     text-decoration: none;
+     color:black;
+    }
+  </style>
+    <style type="text/css">
+        .ana{
+            height: 100%;
+            width: 100%;
+            text-align:center;
+            background-color:beige;
+            font-size:18px;
+        }
+        .baslik {
+            height: 100%;
+            width: 100%;
+            text-align:center;
+            background-color: darkcyan;
+            font-size: 69px;
+        }
+        .link{
+            font-size: 16px;
+        }
+        .sayfalar{
+            height: 100%;
+            width: 100%;
+			margin-top: 8px;
+            text-align:center;
+            background-color:blanchedalmond;
+            font-size:16px;
+        }
+		        footer {
+            text-align:center;
+    background-color:antiquewhite;
+    color: cornflowerblue;
+}
+    </style>
+</head>
+<body>
+    </style>
+	  <meta charset="UTF-8">
+  <meta name="description" content="Burak İsmail IŞIK">
+  <meta name="keywords" content="Elektrik, Elektronik, Bilgisayar">
+  <meta name="author" content="Burak İsmail IŞIK">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-language" content="tr">
+  
+</head>
+<body>
+<script language="JavaScript">
+colours=new Array('#ff0000','#00ff00','#ffffff','#ff00ff','#ffa500','#ffff00','#00ff00','#ffffff','ff00ff')
+n = 10;
+y = 0;
+x = 0;
+n6=(document.getElementById&&!document.all);
+ns=(document.layers);
+ie=(document.all);
+d=(ns||ie)?'document.':'document.getElementById("';
+a=(ns||n6)?'':'all.';
+n6r=(n6)?'")':'';
+s=(ns)?'':'.style';
+if (ns){
+for (i = 0; i < n; i++)
+document.write('<layer name="dots'+i+'" top=0 left=0 width='+i/2+' height='+i/2+' bgcolor=#ff0000></layer>');
+}
+if (ie)
+document.write('<div id="con" style="position:absolute;top:0px;left:0px"><div style="position:relative">');
+if (ie||n6){
+for (i = 0; i < n; i++)
+document.write('<div id="dots'+i+'" style="position:absolute;top:0px;left:0px;width:'+i/2+'px;height:'+i/2+'px;background:#ff0000;font-size:'+i/2+'"></div>');
+}
+if (ie)
+document.write('</div></div>');
+(ns||n6)?window.captureEvents(Event.MOUSEMOVE):0;
+function Mouse(evnt){
+y = (ns||n6)?evnt.pageY+4 - window.pageYOffset:event.y+4;
+x = (ns||n6)?evnt.pageX+1:event.x+1;
+}
+(ns)?window.onMouseMove=Mouse:document.onmousemove=Mouse;
+function animate(){
+o=(ns||n6)?window.pageYOffset:0;
+if (ie)con.style.top=document.body.scrollTop + 'px';
+for (i = 0; i < n; i++){
+var temp1 = eval(d+a+"dots"+i+n6r+s);
+randcolours = colours[Math.floor(Math.random()*colours.length)];
+(ns)?temp1.bgColor = randcolours:temp1.background = randcolours; 
+if (i < n-1){
+ var temp2 = eval(d+a+"dots"+(i+1)+n6r+s);
+ temp1.top = parseInt(temp2.top) + 'px';
+ temp1.left = parseInt(temp2.left) + 'px';
+ } 
+else{
+ temp1.top = y+o + 'px';
+ temp1.left = x + 'px';
+ }
+}
+setTimeout("animate()",10);
+}
+animate();
+</script>
+	<div>
+        <div class="baslik">
+<a href="http://www.burak20007878.team/"><strong><em>Burak İsmail IŞIK</em></strong></a>
+            <div class="link">
+                <a href="https://twitter.com/burak20007878" target="_blank">Twitter</a>
+                &nbsp;&nbsp;
+                <a href="https://www.youtube.com/channel/UCfk2Gb4Rh9typzjWMAc165Q" target="_blank">YouTube</a>
+                &nbsp;&nbsp;
+                <a href="https://steamcommunity.com/id/burak20007878/" target="_blank">Steam</a>
+												&nbsp;&nbsp;
+                <a href="https://burak20007878.yetkinforum.com/" target="_blank">Forum</a>
+            </div>
+        </div>
+<div class="ana">
+    555 ile 2 kanal kaynak seçici
+<div class="sayfalar">
+        Merhabalar devremiz 555 push on-off ile aynıdır sadece yük yerine çift kutuplu role kullanıldı.
+		<br>
+		Rolenin kutuplarından biri sağ kanal diğeri ise sol kanal içindir.
+		<br>
+		<a href="role-baglanti.png" title="Büyük boyut için tıkla"><img src="role-baglanti-kucuk.png"></a>
+		<br>
+		Devre şeması ise buradadır.
+		<br>
+		<a href="devre-semasi.png" title="Büyük boyut için tıkla"><img src="devre-semasi-kucuk.png"></a>
+		<br>
+		Hayatta başarılar dilerim. Kolay gelsin.
+    </div>
+</div>
+        </div>
+		    <footer>
+  <p>Site sahibi: Burak İsmail IŞIK<br>
+  <a href="mailto:burak20007878@gmail.com">burak20007878@gmail.com</a></p>
+<!-- hitwebcounter Code START -->
+<a href="https://www.hitwebcounter.com" target="_blank">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7870108&style=0036&nbdigits=4&type=ip&initCount=0" title="Toplam ziyaret eden kişi" Alt="web counter"   border="0" /></a>                                    
+</footer>
+</body>
+</html>
