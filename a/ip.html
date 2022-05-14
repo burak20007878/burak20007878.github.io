@@ -1,0 +1,57 @@
+<a href="http://www.ipadresi.net" title="ip adresi"><img src="http://in3.sitekodlari.com/ipadresi3.php" border="0" alt="ip adresi"></a>
+<br>
+<script language="JavaScript1.2">
+document.write("Çözünürlüğün: "+screen.width+"*"+screen.height)
+</script>
+<br>
+<table border="0">
+<tr>
+<td><form method="POST" name="t">
+  <table border="0">
+ <tr>
+<td valign="top" width="150"
+  bgcolor="#00FFFF"><strong>Ekran Genişliği :</strong></td>
+ <td><input type="text" size="20"
+name="t1" value="not supported"></td>
+ </tr>
+<tr>
+ <td valign="top" width="150"
+ bgcolor="#00FFFF"><strong>Ekran yüksekliği :</strong></td>
+<td><input type="text" size="20"
+name="t2" value="not supported"></td>
+</tr>
+</table>
+</form>
+ </td>
+</tr>
+</table>
+<p align="left">
+<script>
+function show(){
+if (document.all||document.getElementById||document.layers){
+document.t.t1.value=screen.width
+document.t.t2.value=screen.height
+}
+}
+show()
+</script>
+<div id="fps"> </div>
+<script>
+if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame =
+        window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame;
+}
+var t = [];
+function animate(now) {  
+    t.unshift(now);
+    if (t.length > 10) {
+        var t0 = t.pop();
+        var fps = Math.floor(1000 * 10 / (now - t0));
+        $('#fps').text(fps + ' fps');
+    }
+    window.requestAnimationFrame(animate);
+};
+
+window.requestAnimationFrame(animate);
+</script>
