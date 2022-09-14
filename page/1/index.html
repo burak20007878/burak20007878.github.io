@@ -115,13 +115,36 @@ animate();
                 &nbsp;&nbsp;
                 <a href="https://steamcommunity.com/id/burak20007878/" target="_blank">Steam</a>
 												&nbsp;&nbsp;
-                <a href="https://www.linkedin.com/in/burak20007878/" target="_blank">LinkedIn</a>>
+                <a href="https://www.linkedin.com/in/burak20007878/" target="_blank">LinkedIn</a>
             </div>
         </div>
 <div class="ana">
     Merhaba, umarım bunlar işine yarar.
 <div class="sayfalar">
-        Merhaba bugün size 555 ile polis çakar yapacağım bla bla.
+        Devre 2 kısımdan oluşuyor;
+        <br>
+        555 ile frekans üretiyoruz ve 4017 ile çıkışları sayıyoruz.
+        <br>
+        <a href="devre.png" title="Büyük boyut için tıkla"><img src="devre.png"></a>
+        <br>
+        555 kısmı 10.36 hz ile çalışıyor. İsterseniz R2 direncini potansiyometre ile değiştirip kullanabilirsiniz. Bu sayede frekans ile istediğiniz şekilde oynayabilirsiniz.
+        <br>
+        4017 çıkışlarında diyot kullanma sebebimiz ise çıkışları ters gerilimden korumaktır. 1N4001 gibi diyotlar işimizi fazlasıyla görür.
+        <br>
+        LED yerine transistör ya da MosFET kullanarak daha fazla akım çeken lamba bağlayabilirsiniz.
+        <br>
+        555'in 3 numaralı pini ile 4017'nin 14 numaralı pinlerinden toprağa giden 10K direncin görevi parazit yüzünden devrenin kararsız çalışmasını önlemektir. <a href="https://www.electronics-tutorials.ws/logic/pull-up-resistor.html" target="_blank"> (bknz: PullDown)</a>
+        <br>
+        4017'nin 8 numaralı pini GND, 16 numaralı pini ise artı ("+") beslemeyee bağlanmalıdır.
+        <br>
+        Devrenin maksimum çalışma voltajı 15 voltur. (sınırlayıcı 4017)
+        <br>
+        LED'lerden önceki R4 ve R5 dirençleri takılacak olan LED veya sürülecek olan transistör için uygun seçilmelidir. Bu dirençlerin amacı akımı sınırlayıp LED'in ya da transistörün bozulmasını önlemektir.
+        <br>
+        Devreyi breadboard üzerinde kurduktan sonra herhangi bir sorun yoksa devreyi delikli plaket ya da baskı devre üzerine montajlayıp kullanabilirsiniz.
+        <br>
+        <br>
+        Hayatta başarılar dilerim. Kolay gelsin.
     </div>
 </div>
         </div>
