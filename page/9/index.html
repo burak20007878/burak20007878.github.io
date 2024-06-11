@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html lang="tr-TR">
+<head>
+<link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>SelamCanım</title>
+      <style>
+    a {
+     text-decoration: none;
+     color:black;
+    }
+  </style>
+    <style type="text/css">
+        .ana{
+            height: 100%;
+            width: 100%;
+            text-align:center;
+            background-color:beige;
+            font-size:18px;
+        }
+        .baslik {
+            height: 100%;
+            width: 100%;
+            text-align:center;
+            background-color: darkcyan;
+            font-size: 69px;
+        }
+        .link{
+            font-size: 16px;
+        }
+        .sayfalar{
+            height: 100%;
+            width: 100%;
+			margin-top: 8px;
+            text-align:center;
+            background-color:blanchedalmond;
+            font-size:16px;
+        }
+		        footer {
+            text-align:center;
+    background-color:antiquewhite;
+    color: cornflowerblue;
+}
+    </style>
+</head>
+<body>
+    </style>
+	  <meta charset="UTF-8">
+  <meta name="description" content="Burak İsmail IŞIK">
+  <meta name="keywords" content="Elektrik, Elektronik, Bilgisayar">
+  <meta name="author" content="Burak İsmail IŞIK">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-language" content="tr">
+  
+</head>
+<body>
+<script language="JavaScript">
+colours=new Array('#ff0000','#00ff00','#ffffff','#ff00ff','#ffa500','#ffff00','#00ff00','#ffffff','ff00ff')
+n = 10;
+y = 0;
+x = 0;
+n6=(document.getElementById&&!document.all);
+ns=(document.layers);
+ie=(document.all);
+d=(ns||ie)?'document.':'document.getElementById("';
+a=(ns||n6)?'':'all.';
+n6r=(n6)?'")':'';
+s=(ns)?'':'.style';
+if (ns){
+for (i = 0; i < n; i++)
+document.write('<layer name="dots'+i+'" top=0 left=0 width='+i/2+' height='+i/2+' bgcolor=#ff0000></layer>');
+}
+if (ie)
+document.write('<div id="con" style="position:absolute;top:0px;left:0px"><div style="position:relative">');
+if (ie||n6){
+for (i = 0; i < n; i++)
+document.write('<div id="dots'+i+'" style="position:absolute;top:0px;left:0px;width:'+i/2+'px;height:'+i/2+'px;background:#ff0000;font-size:'+i/2+'"></div>');
+}
+if (ie)
+document.write('</div></div>');
+(ns||n6)?window.captureEvents(Event.MOUSEMOVE):0;
+function Mouse(evnt){
+y = (ns||n6)?evnt.pageY+4 - window.pageYOffset:event.y+4;
+x = (ns||n6)?evnt.pageX+1:event.x+1;
+}
+(ns)?window.onMouseMove=Mouse:document.onmousemove=Mouse;
+function animate(){
+o=(ns||n6)?window.pageYOffset:0;
+if (ie)con.style.top=document.body.scrollTop + 'px';
+for (i = 0; i < n; i++){
+var temp1 = eval(d+a+"dots"+i+n6r+s);
+randcolours = colours[Math.floor(Math.random()*colours.length)];
+(ns)?temp1.bgColor = randcolours:temp1.background = randcolours; 
+if (i < n-1){
+ var temp2 = eval(d+a+"dots"+(i+1)+n6r+s);
+ temp1.top = parseInt(temp2.top) + 'px';
+ temp1.left = parseInt(temp2.left) + 'px';
+ } 
+else{
+ temp1.top = y+o + 'px';
+ temp1.left = x + 'px';
+ }
+}
+setTimeout("animate()",10);
+}
+animate();
+</script>
+	<div>
+        <div class="baslik">
+<a href="https://burak20007878.github.io/"><strong><em>Burak İsmail IŞIK</em></strong></a>
+            <div class="link">
+                <a href="https://twitter.com/burak20007878" target="_blank">Twitter</a>
+                &nbsp;&nbsp;
+                <a href="https://www.youtube.com/channel/UCfk2Gb4Rh9typzjWMAc165Q" target="_blank">YouTube</a>
+                &nbsp;&nbsp;
+                <a href="https://steamcommunity.com/id/burak20007878/" target="_blank">Steam</a>
+								&nbsp;&nbsp;
+                <a href="https://www.linkedin.com/in/burak20007878/" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+<div class="ana">
+    Merhaba, umarım bunlar işine yarar.
+<div class="sayfalar">
+        BLDC motor sürücü tasarımı ve devre şeması<br><br>
+        Lisans bitirme projesi olarak BLDC motor sürücü tasarımı seçtik. Öncelikle BLDC nedir?<br>
+        BLDC BrushLess Direct Current kelimesinin kısaltmasıdır. Standart motorlarda bulunan fırçalar
+        bu tip motorlarda bulunmaz. Sargı uçları direkt olarak dış dünya ile bağlantıya sahiptir. Fırçalı
+        motorlarda fırçanın görevinin sürücümüz yapmaktadır. BLDC motorlarda dış dünyaya çıkan 3 adet uç bulunur.
+        Bu uçları doğru sıralama ile enerjilendirdiğimiz zaman ise rotor istediğimiz yönde hareket etmeye başlar.<br>
+        <img src="Resim1.png" title="BLDC motor iç yapısı" width="400" height="300" > <br>
+        Peki diğer motorlardan farkı nedir, neden bu tip motorlar kullanılır?<br>
+        Fırçalı motorlarda dış dünya ile sargı arasında kömür adı verilen bir parça yardımı ile enerjilendirilir.
+        Bu kömür kollektöre sürtüp sargılara enerji verir. Sürtünmeye bağlı olarak da zamanla aşınır ve görevini yapamayacak duruma gelir.
+        Aynı zamanda aşınan kömürün tozları kollektörü doldurup, kollektörün iletkenlik özelliğinin azalmasına yol açar. BLDC motorlarda ise 
+        bu tarz sorunlar olmadığı için daha az bakım ile daha uzun süre çalışabilir. Aynı zamanda fırçanın sürtünmesi olmadığı için daha az 
+        kayıba sahiptir. Bu bahsettiğim kısım BLDC motorun artı yönleriydi. Her güzelin bir kusuru olduğu gibi BLDC motorların kusuru ise daha 
+        karmaşık sürme yöntemine sahip olması. Fırçalı motorları direkt enerji verip çalıştırabilirken BLDC motorlarda ise sargıların enerjilendirilme 
+        sırasını ayarlayabilmek için bir sürücüye ihtiyaç duyar.<br>
+        <img src="bldc_sargi.gif" width="500" height="350" title="BLDC uçların enerjilendirilme sırası"> <br>
+        Motordan dış dünyaya 3 adet uç çıkar. Bunlar "U", "V", "W" uçlarıdır. Bu uçların enerjilendiirilme sırası ile motor harekete başlar.
+        Bu enerjilendirme işlemini ise mosfet adı verilen elektronik anahtar ile yapılır. Mosfetin tetik ucuna uygulanan gerilim ile daha yüksek gerilimleri
+        kontrol ederek açıp kapatabiliriz.<br>
+        <img src="Resim2.png" width="500" height="350" title="Mosfetler ile motor uçlarının enerjilendirilmesi"> <br>
+        Mosfetler PWM ile açılıp kapatılıyor. Yapılan tasarımda anahtarlama frekansı olarak 21 KHz kullanıldı. Bu değerin seçilme sebebi tipik olarak çoğu 
+        sürücülerde bu değerin kullanılmasıdır. SW1, SW3, SW5 adlı mosfetler high side adı verilen gruptur. Bunun sebebi N kanal mosfetlerin genel kullanım 
+        şeklinin aksine yük bara ile drain arasında değil source ile toprak arasındadır. SW2, SW4, SW6 ise low side adı verilen grubun mosfetleridir. Kullandığımız
+        sürme yönteminde high side pwm ile enerjilendirilirken, low side ise logic 1-0 olarak enerjilendiriliyor.<br>
+        <img src="Resim4.png" width="500" height="350" title="Mosfet sürücümüz"> <br>
+        Low side mosfetleri rahatlıkla enerjilendirebiliyoruz ama high side kısmı ise maalesef direkt çalıştıramıyoruz. Bunun sebebi ise mosfetin çalışması için gate 
+        voltajının source voltajından yüksek olması gerekir. High side mosfetlerin source ucu toprağa bağlı olmadığı için P_IN gerilimi aynı şekilde source ucunda görünür.
+        Bootstrap adı verilen method ile gate ucuna gelen gerilim P_IN kısmından daha yüksek bir seviyeye çıkarılır. Bu yükseltme işlemini ise bootstrap kondastörü adı verilen 
+        kondastör sayesinde yapar. Daha detaylı bilgi için <a href="http://omerbayraktar.com/2015/01/07/mosfet-ve-igbt-surme-teknikleri/">bu yazıyı</a> okuyabilirsiniz.<br>
+        <img src="Resim6.png" width="500" height="350" title="Sürücünün besleme kısmı"> <br>
+        Sürücünün üzerindeki gerekli birleşenlerin çalışması için gerekli voltajları sağlamak için lineer voltaj regülatörleri kullandık. Mosfet sürücü ve opampın beslemesini 12V 
+        regülatör ile sağladık. 7812 tarzı basit regülatörler yerine LM2575 kullanma amacımız daha yüksek gerilimler altında çalışmak. 7812 ile 35 volta kadar olan gerilimler ile 
+        çalışabilirken LM2578 entegresinin HV versiyonu ile 65 volta kadar olan gerilimleri 12 volta düşürebiliyoruz. Sürücümüzün kontrol birimi olan STM32 için ise gerekli olan gerilimi 
+        LT1117 adı verilen basit bir regülatör ile sağladık. Giriş voltajı olarak bir önceki entegreden çıkan 12 voltu kullandığımız için yüksek gerilim değerleri ile çalışan entegreye ihtiyaç
+        duymadık. C12 kondastörü ise anlık akım değişimlerinde kaynak voltajının çökmesini ve tam olarak regüle edilmemiş kaynaklar ile çalışırken oluşan gerilim dalgalanmalarını önlemek için
+        kullandık. Sol atta bulunan R14 ve R15 gerilim bölücüsü ile ana besleme gerilimimizi işlemci vasıtasıyla okuyup kullanıcıyı bilgilendirmeyi amaçladık. Yanında bulunan R3 direnci ile motorun 
+        çektiği akımı okuduk. Bir yanda bulunan opamp ile ise bir önceki bölümde okuduğumuz gerilim ve akım değerlerini işlemciye girmeden önce bazı yükseltme ve empedans düzeltme işlemlerine soktuk.
+        Bunun amacı ise Okuduğumuz akım değerinin çok düşük olması. Devreden geçen 100 mA akım değeri R3 direnci üzerinde 0,2 mV değerinde bir gerilim oluşturuyor ve biz bu değeri işlemcimize gönderirsek
+        işlemcimiz bir şey anlamayacak. Bunun sebebi ise işlemcimizde ADC olarak 12 bit ADC kullanmamız. ADC ise kısaca dışarıdan gelen gerilimi belli bir aralığa göre değer vermesi. Kullandığımız işlemci
+        ADC olarak 3,3 voltu 12 bite yani 4095 eş parçaya ayırması. Bu işlemler sonucu eğer işlemcimize 0,8 mV gerilim değeri verirsek ADC kısmı bunu 0-4095 aralığı arasında 1 değerine eşitleyecek. Hatırlarsanız
+        eğer biz 100 mA akım akıtırsak R3 üzerinde 0,2 mV gerilim oluşacaktı. Bu değeri ise ADC'nin okuyabildiği minimum değerinde altında olduğu için 0 olarak görecekti. Bu yüzden opamp ile yaklaşık 48 kat yükseltip
+        işlemciye gönderdik. Aynı durumda 0,2 mV yükseltilerek 9,6 mV değeri ile işlemciye girecek ve 12 değerini alacak. Yapılan işlemi tersine çeivirerek R3 direnci üzerinden geçen akımı öğrenebileceğiz. <br> <br>
+        <img src="Resim7.png" width="500" height="350" title="Kontrol birimimiz ve çevre birleşenler"> <br>
+        Sol üstte kullanıcıya sesli ve görsel olarak uyarıları göstermek için kullandığımız LED ve buzzer bulunmaktadır. Alt kısımda ise butonlar bulunmaktadır. Bu butonlar ile klasik olarak potansiyometre
+        ile yapılan hız kontrolünü yapmayı amaçladık. Orta bölümde denetleyici kartımız olan STM32'nin mikroişlemcisi gözükmektedir. Sağ üstte ise Hall sensör uçları bulunmaktadır. <br><br>
+        <img src="hall.png" width="400" height="300" title="Hall sensör"> <br>
+        Peki Hall sensör nedir, neden kullanılır? <br>
+        Biz motor sargı uçlarını sırayla tetikliyoruz ama ya rotor olası gereken konuma daha gelmediyse? Fırçalı motorlarda kollektör rotora bağlı olduğu için eğer rotor olması gereken pozisyona gelmediyse bir sonraki
+        enerjilendirmeye geçmez ama BLDC'de ise biz rotor dönsede dönmesede sargıları tetikleyebiliriz ama bunu yapınca rotor dönmediği için bir işimize yaramayacak. BLDC motorlarda rotor mıknatıs ise kaplıdır.
+        Hall sensör ise üzerine gelen manyetik alana göre 1 veya 0 çıkışı verir. Örneğin resimde "Hall B" adı verilen hall sensör 1 çıkışı verirken "Hall A" ise 0 çıkışı verir. "Hall C" ise üzerinde mevcut bir manyetik alan
+        olmadığı için önceki durumu tekrar eder. Bu gelen verilere göre rotorun döndüğünü ve bir sonraki anahtarlama işleminin başlaması gerektiğini anlarız.<br><br>
+        <img src="Resim8.jpg" width="500" height="350" title="Kontrol birimimiz"> <br>
+        Sürücümüzün kontrolünü sağlayan denetleyici piyasada "BluePill" olarak bilinen STM32 kartıdır. Kartta kullandığımız özellikler ise mosfetleri açıp kapatmak için PWM, gerilim ve akım değerlerini öğrenmek için 
+        ADC, Bilgisayar ile haberleştirmek için UART, veri girişi ve çıkışı yapabilmek için ise GPIO.<br><br>
+        <a href ="https://burak20007878.github.io/page/9/Resim9.png"><img src="Resim9.png" width="500" height="350" title="Sürücünün arka yüzü"> <br></a>
+        <a href ="https://burak20007878.github.io/page/9/Resim10.png"><img src="Resim10.png" width="500" height="350" title="Sürücünün ön yüzü"> <br></a>
+        <img src="Resim11.png" width="500" height="350" title="Bilgisayar Arayüzü"> <br>
+        Visual studio üzerinden C# ile tasarladığımız arayüz ile seri port üzerinden aldığımız gerilim, akım, duty değerlerin yanı sıra sürücüye gönderdiğimiz verilen ile motorun hızını artırıp azaltma, dönüş yönü değiştirme,
+        anlık olarak durdurma ve belirlediğimiz akım ve gerilim değerleri dışına çıkıldığında motru durdurma gibi işlemler yapabiliyoruz.<br><br>
+        Şuan mevcutta bulunan sorunlar ise öncelikle ADC ile akım okurken karşımıza çıkıyor.<br>
+        <img src="akim.ppm" width="500" height="350" title="Sargı akımları"> <br>
+        Çekilen akım RMS değer olmadığı için ADC nerede okudu ise gerilim değerimiz o oluyor. Bu yüzden akım 0 ile tepe arasında geziniyor. Bu yüzden arayüzde aşırı akım ayarını istediğimiz gibi yapamıyoruz. Bunun çözümü okuduğumuz
+        0 dan başlayıp tekrar 0 olasıya kadar bir aralığa kaydetmek ve o aralıktaki en yüksek değeri √2 ile çarpmak yada sıfır geçiş dedektörü kullanmak. C# da aşırı mükemmel olmadığım için bunu yapamadım ama araştırma ile her şey çözülebilir.
+        2. sorunumuz ise RPM ölçme kısmı. kullandığımız motor 8 kutuplu bu yüzden her 4 elektriksel turda 1 mekanik tur atıyor. Yani 4 kere bütün tetikleme işlemini tamamlarsak motor 1 tur atmış oluyor. Hall sensör değerlerini okuabildiğimiz için
+        belirlediğimiz hall sensörler aktif olduğunda a değerini 1 arttır dedik ve eğer bu a değeri 100 olursa belirlediğimiz bir değişkeni 1 yap aynı zamanda a değerini 0 yap dedik. Arayüz kısmında ise seri porttan eğer 1 değeri gelirse bir 
+        kronometre başlat dedik. Tekrardan 1 geldiğinde ise kronometreyi durdurduk. Teoride 25 tur için geçen süreyi hesaplamamız lazım ama düşük hızlarda 0,4 saniye gibi absürt değerler aldık. Yüksek hızlarda ise 25 tur için 2-1 saniye arasında
+        mantıklı değerler elde ettik. <br><br>
+        <a href ="https://github.com/burak20007878/ESC1">Visual Studio Dosyaları</a><br>
+        <a href ="https://github.com/burak20007878/ESC_STM">STM32 Dosyaları</a><br>
+        <a href ="https://github.com/burak20007878/ESC_Proteus">Proteus Dosyaları</a>
+
+
+    
+    </div>
+</div>
+        </div>
+		    <footer>
+  <p>Site sahibi: Burak İsmail IŞIK<br>
+  <a href="mailto:burak20007878@gmail.com">burak20007878@gmail.com</a></p>
+<!-- hitwebcounter Code START -->
+<a href="https://www.hitwebcounter.com" target="_blank">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7969655&style=0007&nbdigits=5&type=page&initCount=0" title="Toplam ziyaret eden kişi" Alt="web counter"   border="0" /></a>                                    
+</footer>
+</body>
+</html>
