@@ -17,7 +17,8 @@
                 data.forEach(file => {
                     const listItem = document.createElement('li');
                     const link = document.createElement('a');
-                    link.href = file.html_url;  // GitHub dosya linki
+                    // GitHub raw URL (doğrudan PDF dosyasının ham URL'si)
+                    link.href = file.download_url; 
                     link.textContent = file.name;  // Dosya ismi
                     link.target = "_blank"; // Yeni sekmede açılacak
                     listItem.appendChild(link);
