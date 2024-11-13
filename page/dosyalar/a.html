@@ -1,7 +1,29 @@
-<embed 
-	src= "a.pdf" 
-	type= "application/pdf" 
-	width= "100%" 
-	height= "100%" 
-	title= "Gömülü PDF Görüntüleyici" 
-/>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dosyalar</title>
+</head>
+<body>
+    <h1>Dosya Listesi</h1>
+    <ul id="file-list"></ul>
+
+    <script>
+        fetch('https://api.github.com/repos/burak20007878/burak20007878.github.io/contents/page/dosyalar')
+            .then(response => response.json())
+            .then(data => {
+                const fileList = document.getElementById('file-list');
+                data.forEach(file => {
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = file.html_url;  // GitHub linki
+                    link.textContent = file.name;  // Dosya ismi
+                    listItem.appendChild(link);
+                    fileList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error fetching files:', error));
+    </script>
+</body>
+</html>
