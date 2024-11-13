@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dosyalar</title>
+    <title>Dosya Listesi</title>
 </head>
 <body>
     <h1>Dosya Listesi</h1>
@@ -17,8 +17,18 @@
                 data.forEach(file => {
                     const listItem = document.createElement('li');
                     const link = document.createElement('a');
-                    link.href = file.html_url;  // GitHub linki
+                    link.href = file.html_url;  // GitHub dosya linki
                     link.textContent = file.name;  // Dosya ismi
+
+                    // Eğer PDF dosyası ise, iframe ile önizleme ekleyebilirsiniz
+                    if(file.name.endsWith('.pdf')) {
+                        const iframe = document.createElement('iframe');
+                        iframe.src = file.download_url;  // PDF dosyasını iframe içinde göster
+                        iframe.width = '300';
+                        iframe.height = '200';
+                        listItem.appendChild(iframe);
+                    }
+
                     listItem.appendChild(link);
                     fileList.appendChild(listItem);
                 });
