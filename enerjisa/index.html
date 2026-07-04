@@ -8,7 +8,7 @@
     <h1>Belgeler Klasörü İçindeki Dosyalar</h1>
     <ul>
       {% for file in site.static_files %}
-        {% if file.path contains '/belgeler/' %}
+        {% if file.path contains '/enerjisa/' %}
           <li><a href="{{ site.baseurl }}{{ file.path }}">{{ file.name }}</a></li>
         {% endif %}
       {% endfor %}
