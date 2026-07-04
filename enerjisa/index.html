@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Klasör İçeriği</title>
+</head>
+<body>
+    <h1>Belgeler Klasörü İçindeki Dosyalar</h1>
+    <ul>
+      {% for file in site.static_files %}
+        {% if file.path contains '/belgeler/' %}
+          <li><a href="{{ site.baseurl }}{{ file.path }}">{{ file.name }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+</body>
+</html>
