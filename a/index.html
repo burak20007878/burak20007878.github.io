@@ -1,0 +1,30 @@
+---
+---
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>a Dosyaları</title>
+</head>
+<body>
+    <h1>a Klasörü İçindeki Dosyalar</h1>
+    
+    <h3>Sayfalar (HTML)</h3>
+    <ul>
+      {% for p in site.pages %}
+        {% if p.url contains '/a/' and p.name != 'index.html' %}
+          <li><a href="{{ site.baseurl }}{{ p.url }}">{{ p.name }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    <h3>Diğer Dosyalar (Resim, PDF vb.)</h3>
+    <ul>
+      {% for file in site.static_files %}
+        {% if file.path contains '/a/' %}
+          <li><a href="{{ site.baseurl }}{{ file.path }}">{{ file.name }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+</body>
+</html>
