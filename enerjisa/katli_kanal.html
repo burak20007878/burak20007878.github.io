@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -173,7 +174,7 @@
   <header>
     <div class="brand">
       <h1><span class="c1">Enerji</span> <span class="c2">Kabloları</span></h1>
-      <span class="sub">EKAT / TEDAŞ Standartları Katlı Kanal ve Hacim Hesabı</span>
+      <span class="sub">EKAT / TEDAŞ Standartları Kanal ve Hacim Hesabı</span>
     </div>
   </header>
 
@@ -242,6 +243,11 @@
           <div class="field"><label>Kum yoğ. (t/m³)</label><input class="hf" id="kumDens" type="text" inputmode="decimal" value="1,6" autocomplete="off"></div>
           <div class="field"><label>Dolgu yoğ. (t/m³)</label><input class="hf" id="dolguDens" type="text" inputmode="decimal" value="1,9" autocomplete="off"></div>
         </div>
+        
+        <div class="matin" style="margin-top:2px;">
+           <div class="field"><label>Sıkışma Payı (%)</label><input class="hf" id="kompPay" type="text" inputmode="decimal" value="15" autocomplete="off" title="Malzemenin sıkıştırılması sonucu oluşan zayiat"></div>
+        </div>
+
         <div class="results" id="volresults"></div>
         <div class="infoline" id="dims"></div>
         <div class="mlabel">Tuğla / Bims Adedi</div>
@@ -379,9 +385,10 @@ function compute(){
   const L = Math.max(0, parseNum($('len').value));
   const interval7 = Math.max(0.05, parseNum($('interval7').value) || 1);
   const kd = parseNum($('kumDens').value) || 1.6, dd = parseNum($('dolguDens').value) || 1.9;
+  const kompPay = parseNum($('kompPay').value) || 0; // Sıkışma Payı
   
   const dipM = dip / 100, ustM = ust / 100, depM = finalDepth / 100;
-  const Vtot = (dipM + ustM) / 2 * depM * L;
+  const Vtot = (dipM + ustM) / 2 * depM * L; // Geometrik Kazı Hacmi
   
   const hsCm = hsReq; 
   const hs = hsCm / 100;
@@ -397,14 +404,19 @@ function compute(){
   
   const Vbims = (wHs * L * (BIMS/100)); 
 
-  const kum = Math.max(0, VsandBase - Vcab); 
-  const dolgu = Math.max(0, Vtot - VsandBase - Vbims);
+  let kum = Math.max(0, VsandBase - Vcab); 
+  let dolgu = Math.max(0, Vtot - VsandBase - Vbims);
+  
+  // Sıkışma Payı (Kompaksiyon) Çarpanı
+  kum = kum * (1 + kompPay / 100);
+  dolgu = dolgu * (1 + kompPay / 100);
+  
   const kumTon = kum * kd, dolguTon = dolgu * dd;
 
   // Malzeme Adetleri (7'lik Ara Taşlar ve Devre Ayırıcılar)
   let n7 = 0, n14 = 0;
   Object.values(layerData).forEach(ld => {
-    n7 += ld.segs.filter(s => s.t === 'a' || (s.t === 'l' && !s.sep)).length; // Duvar payı ve yatay mesnet noktaları
+    n7 += ld.segs.filter(s => s.t === 'a' || (s.t === 'l' && !s.sep)).length; 
     n14 += ld.segs.filter(s => s.t === 'l' && s.sep).length;
   });
   
@@ -416,7 +428,7 @@ function compute(){
   const bims = Math.ceil((wHs * L) / (0.50 * 0.20)) || 0;
   const cableLen = totalCables * L;
 
-  return {tp, depth: finalDepth, baseDepth, isDepthOverridden, isOrderValid, minDip, slope, layerData, activeLayers, a: layerData[activeLayers[0]]?.a||0, dMax:overallDMax, G, dip, ust, L, interval7, kd, dd, Vtot, kum, dolgu, kumTon, dolguTon, hsCm, araPts, rows, spacer7, n14, sep14, bims, totalCables, cableLen};
+  return {tp, depth: finalDepth, baseDepth, isDepthOverridden, isOrderValid, minDip, slope, layerData, activeLayers, a: layerData[activeLayers[0]]?.a||0, dMax:overallDMax, G, dip, ust, L, interval7, kd, dd, Vtot, kum, dolgu, kumTon, dolguTon, kompPay, hsCm, araPts, rows, spacer7, n14, sep14, bims, totalCables, cableLen};
 }
 
 function renderFormula(){
@@ -493,10 +505,13 @@ function renderResults(r){
 
 function renderVolume(r){
   $('dims').innerHTML=`Kablolar + Kum yüksekliği ${fmt(r.hsCm)} cm · Toplam kablo ${fmt(r.cableLen,1)} m`;
+  
+  let kompTxt = r.kompPay > 0 ? ` (+%${r.kompPay})` : '';
+  
   $('volresults').innerHTML=
     `<div class="rcard hero"><div class="k">Toplam kazı hacmi</div><div class="val">${fmt3(r.Vtot)}<span class="u">m³</span></div></div>`+
-    `<div class="rcard wood"><div class="k">Kanal Kumu</div><div class="val">${fmt3(r.kum)}<span class="u">m³</span></div><div class="sub2">≈ ${fmt(r.kumTon,1)} ton (×${fmt(r.kd)})</div></div>`+
-    `<div class="rcard blue"><div class="k">Dolgu Malzemesi</div><div class="val">${fmt3(r.dolgu)}<span class="u">m³</span></div><div class="sub2">≈ ${fmt(r.dolguTon,1)} ton (×${fmt(r.dd)})</div></div>`;
+    `<div class="rcard wood"><div class="k">Kanal Kumu${kompTxt}</div><div class="val">${fmt3(r.kum)}<span class="u">m³</span></div><div class="sub2">≈ ${fmt(r.kumTon,1)} ton (×${fmt(r.kd)})</div></div>`+
+    `<div class="rcard blue"><div class="k">Dolgu Malzemesi${kompTxt}</div><div class="val">${fmt3(r.dolgu)}<span class="u">m³</span></div><div class="sub2">≈ ${fmt(r.dolguTon,1)} ton (×${fmt(r.dd)})</div></div>`;
   
   $('bricks').innerHTML=
     `<div class="brick b7"><span class="bico"></span><div class="btxt"><div class="bn">Yatay Ayırıcı Taş (7'lik)</div><div class="bd">Her ${fmt(r.interval7)} metrede yatay mesnet</div></div><div class="bcount"><div class="bv">${r.spacer7}</div><div class="bu">adet</div></div></div>`+
@@ -632,7 +647,7 @@ function renderDiagram(r){
 function update(){const r=compute();renderFormula();renderList();renderResults(r);renderVolume(r);renderDiagram(r);}
 $('addYG').addEventListener('click',()=>{items.push({kind:'YG',id:'YG:al:1x150/25', kat:1});update();});
 $('addAG').addEventListener('click',()=>{items.push({kind:'AG',id:'AG:3:3x150', kat:1});update();});
-['guzergah','tip','len','interval7','kumDens','dolguDens'].forEach(id=>{const e=$(id);e.addEventListener('change',update);e.addEventListener('input',update);});
+['guzergah','tip','len','interval7','kumDens','dolguDens','kompPay'].forEach(id=>{const e=$(id);e.addEventListener('change',update);e.addEventListener('input',update);});
 update();
 </script>
 </body>
