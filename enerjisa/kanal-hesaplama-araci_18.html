@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enerji Kabloları</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F3EEE0;--cream-2:#FBF8F0;--card:#FFFFFF;--ink:#4A3E30;--ink-soft:#6E6051;
+    --line:#E2D9C5;--olive:#45502E;--red:#B5432E;--green:#5E7B3E;--green-d:#4C6731;
+    --orange:#C8763C;--blue:#3E7CB1;--wood:#9C6B3F;--yg:#C62828;--ag:#1E1E1E;
+    --sand:#C9A96A;--kilavuz:#B9BEC4;--arataş:#C79A5E;
+    --shadow:0 1px 3px rgba(74,62,48,.07),0 6px 18px rgba(74,62,48,.05);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--cream);color:var(--ink);
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1240px;margin:0 auto;padding:18px 22px 48px}
+
+  header{display:flex;align-items:center;justify-content:space-between;gap:18px;
+    padding:14px 22px;border-radius:14px;background:var(--cream-2);
+    border:1px solid var(--line);box-shadow:var(--shadow);flex-wrap:wrap}
+  .brand{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .brand h1{font-size:26px;font-weight:800;margin:0;letter-spacing:-.4px}
+  .brand h1 .c1{color:var(--olive)} .brand h1 .c2{color:var(--red)}
+  .brand .sub{font-size:12.5px;color:var(--ink-soft);font-weight:500}
+  .sig{background:url("data:image/png;base64,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") center/contain no-repeat;width:326px;height:34px;flex:none}
+
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    box-shadow:var(--shadow);padding:22px;margin-top:16px}
+  .panel h2{margin:0;font-size:19px;font-weight:800;color:var(--ink);letter-spacing:-.3px}
+  .panel h2.olive{background:var(--olive);color:#fff;padding:13px 18px;border-radius:11px}
+  .panel h2 small{display:block;font-size:12.5px;font-weight:500;color:#E7EBDD;letter-spacing:0;margin-top:3px}
+
+  .formula{margin-top:16px;background:linear-gradient(180deg,#FBF8F0,#F6F1E5);
+    border:1px solid var(--line);border-radius:12px;padding:20px 18px;text-align:center}
+  .formula .big{font-size:clamp(24px,4.6vw,40px);font-weight:800;color:var(--olive);
+    letter-spacing:1px;font-variant-numeric:tabular-nums}
+  .formula .big .op{color:var(--ink-soft);margin:0 .1em} .formula .big .v{color:var(--red)}
+  .formula .sub{margin-top:8px;font-size:12.5px;color:var(--ink-soft);font-weight:500}
+
+  .grid3{display:grid;grid-template-columns:300px minmax(0,1fr) 292px;gap:16px;margin-top:16px;align-items:start}
+  @media(max-width:1160px){.grid3{grid-template-columns:1fr}}
+
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.5px;
+    font-weight:700;color:var(--ink-soft);margin-bottom:7px}
+  select.hf,input.hf{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:11px;
+    background:var(--cream-2);color:var(--ink);font-size:13.5px;font-family:inherit;font-weight:500;outline:none;transition:.15s}
+  select.hf{appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%236E6051' stroke-width='1.6' stroke-linecap='round'/></svg>");
+    background-repeat:no-repeat;background-position:right 13px center;padding-right:34px}
+  input.hf{text-align:right;font-variant-numeric:tabular-nums}
+  select.hf:focus,input.hf:focus{border-color:var(--green);background-color:#fff;box-shadow:0 0 0 3px rgba(94,123,62,.13)}
+  select.hf:disabled{opacity:.5;cursor:not-allowed}
+  .inline{display:flex;gap:8px;align-items:center}
+  .inline .u{font-size:12.5px;font-weight:700;color:var(--ink-soft);background:#EDE5D2;border-radius:8px;padding:11px 12px;white-space:nowrap;flex:none}
+  .depthchip{margin-top:8px;display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;
+    color:var(--green-d);background:#EEF2E6;border:1px solid #D8E1C7;border-radius:9px;padding:7px 11px}
+  .depthchip .dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+  .depthchip.abone{color:#8a5a2a;background:#FBEFE2;border-color:#EAD3B8} .depthchip.abone .dot{background:var(--orange)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+  .addbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .addbtn{cursor:pointer;border:0;border-radius:11px;color:#fff;font-family:inherit;font-weight:700;font-size:14px;
+    padding:13px 12px;display:flex;align-items:center;justify-content:center;gap:8px;transition:.15s;box-shadow:var(--shadow)}
+  .addbtn .plus{font-size:18px;line-height:1}
+  .addbtn.yg{background:var(--yg)} .addbtn.yg:hover{background:#a71f1f}
+  .addbtn.ag{background:var(--ag)} .addbtn.ag:hover{background:#000}
+  .addhelp{margin-top:10px;font-size:12px;color:var(--ink-soft);line-height:1.5}
+  .addhelp .kyg{color:var(--yg);font-weight:700} .addhelp .kag{color:var(--ag);font-weight:700}
+
+  .clist{margin-top:14px;display:flex;flex-direction:column;gap:9px}
+  .crow{display:flex;align-items:center;gap:9px;background:var(--cream-2);border:1px solid var(--line);border-radius:11px;padding:9px 10px}
+  .crow .cdot{flex:none;width:16px;height:16px;border-radius:50%;border:2px solid rgba(0,0,0,.15)}
+  .crow .cdot.yg{background:var(--yg)} .crow .cdot.ag{background:var(--ag)}
+  .crow .cbadge{flex:none;font-size:10px;font-weight:800;letter-spacing:.5px;padding:3px 7px;border-radius:6px;color:#fff}
+  .crow .cbadge.yg{background:var(--yg)} .crow .cbadge.ag{background:var(--ag)}
+  .crow select{flex:1;min-width:0;padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:#fff;
+    color:var(--ink);font-size:12.5px;font-family:inherit;font-weight:500;outline:none;appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%236E6051' stroke-width='1.6' stroke-linecap='round'/></svg>");
+    background-repeat:no-repeat;background-position:right 10px center;padding-right:28px}
+  .crow select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(94,123,62,.13)}
+  .crow .dchip{flex:none;font-size:11.5px;font-weight:700;color:var(--ink-soft);background:#EDE5D2;border-radius:7px;padding:7px 8px;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .crow .cnote{flex:none;font-size:10.5px;font-weight:600;color:var(--yg)}
+  .crow .del{flex:none;width:26px;height:26px;border:0;border-radius:7px;background:#EFE6D6;color:#9A8E7B;font-size:16px;line-height:1;cursor:pointer;transition:.15s}
+  .crow .del:hover{background:var(--red);color:#fff}
+  .cempty{border:1.5px dashed #CDBE9F;border-radius:11px;padding:16px;text-align:center;color:var(--ink-soft);font-size:12.5px;font-weight:500}
+
+  .diagram{background:#F8FAFB;border:1px solid var(--line);border-radius:12px;padding:10px;overflow-x:auto}
+  .diagram svg{display:block;width:100%;height:auto;min-width:0;max-width:100%}
+
+  /* Sağ sütun: kanal detay / malzeme */
+  .matcol{display:flex;flex-direction:column;gap:10px}
+  .matcol .mhead{font-size:14px;font-weight:800;color:#fff;letter-spacing:-.2px;padding:9px 13px;background:var(--olive);border-radius:10px}
+  .matin{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .matin .field{margin-bottom:0}
+  .matin label{font-size:9.5px;margin-bottom:4px}
+  .matin input.hf{padding:8px 10px;font-size:12.5px;border-radius:9px}
+  .matcol .results{display:flex;flex-direction:column;gap:8px;margin-top:0}
+  .matcol .rcard{padding:10px 12px}
+  .matcol .rcard .k{font-size:10px} .matcol .rcard .val{font-size:19px} .matcol .rcard.hero .val{font-size:20px}
+  .matcol .rcard .sub2{font-size:11px;margin-top:2px}
+  .matcol .bricks{display:flex;flex-direction:column;gap:8px;margin-top:0}
+  .matcol .brick{padding:9px 11px;gap:9px} .matcol .brick .bcount .bv{font-size:18px}
+  .matcol .infoline{font-size:11px;color:var(--ink-soft);font-weight:600;text-align:center;padding:1px}
+  .matcol .mlabel{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;font-weight:700;color:var(--ink-soft);margin-top:2px}
+  .matcol .mininote{font-size:10px;color:var(--ink-soft);line-height:1.5;background:var(--cream-2);border:1px solid var(--line);border-left:3px solid var(--olive);border-radius:8px;padding:8px 10px}
+  .leg{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;padding:0 4px;font-size:11.5px;color:var(--ink-soft);font-weight:600}
+  .leg span{display:inline-flex;align-items:center;gap:6px}
+  .leg i{width:14px;height:14px;border-radius:3px;border:1px solid rgba(0,0,0,.15);flex:none}
+  .leg .s7{background:var(--arataş)} .leg .s14{background:var(--kilavuz)} .leg .skil{background:var(--kilavuz)}
+  .leg .skum{background:var(--sand)} .leg .sdol{background:#EFE9DA} .leg .syg{background:var(--yg);border-radius:50%} .leg .sag{background:var(--ag);border-radius:50%}
+
+  .results{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px}
+  .rcard{background:var(--cream-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .rcard .k{font-size:11px;text-transform:uppercase;letter-spacing:.5px;font-weight:700;color:var(--ink-soft)}
+  .rcard .k .let{color:var(--red);font-weight:800}
+  .rcard .val{margin-top:4px;font-size:23px;font-weight:800;color:var(--green-d);font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+  .rcard .val .u{font-size:13px;font-weight:600;color:var(--ink-soft);margin-left:3px}
+  .rcard .sub2{margin-top:3px;font-size:12.5px;font-weight:700;color:var(--wood);font-variant-numeric:tabular-nums}
+  .rcard.hero{background:var(--olive);border-color:var(--olive)}
+  .rcard.hero .k{color:#E7EBDD} .rcard.hero .k .let{color:#fff}
+  .rcard.hero .val{color:#fff;font-size:27px} .rcard.hero .val .u{color:#E7EBDD}
+  .rcard.wood{background:#F1E7D8;border-color:#E0D2BC} .rcard.wood .val{color:var(--wood)}
+  .rcard.blue{background:#EAF1F6;border-color:#CDE0EC} .rcard.blue .val{color:var(--blue)} .rcard.blue .sub2{color:var(--blue)}
+
+  .solved{margin-top:16px;background:linear-gradient(180deg,#FBF8F0,#F6F1E5);border:1px solid var(--line);border-radius:12px;
+    padding:16px 18px;font-size:clamp(14px,2.5vw,19px);font-weight:800;color:var(--olive);text-align:center;
+    font-variant-numeric:tabular-nums;letter-spacing:.2px;line-height:1.7}
+  .solved .op{color:var(--ink-soft);margin:0 .08em} .solved .res{color:var(--red)}
+  .solved .l2{display:block;font-size:.82em;margin-top:6px;color:var(--wood)}
+
+  .badge{margin-top:14px;display:flex;align-items:center;gap:9px;border-radius:11px;padding:12px 15px;font-size:13px;font-weight:600;border:1px solid}
+  .badge.ok{background:#EEF2E6;border-color:#D8E1C7;color:var(--green-d)}
+  .badge.warn{background:#FBEFE2;border-color:#EAD3B8;color:#8a5a2a}
+  .badge .ic{flex:none;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px}
+  .badge.ok .ic{background:var(--green)} .badge.warn .ic{background:var(--orange)}
+
+  .rules{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px}
+  @media(max-width:760px){.rules{grid-template-columns:1fr}}
+  .rule{background:var(--cream-2);border:1px solid var(--line);border-radius:11px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+  .rule .badgeL{flex:none;width:34px;height:34px;border-radius:9px;background:var(--olive);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;font-style:italic}
+  .rule.g14 .badgeL{background:var(--orange);font-style:normal;font-size:12px}
+  .rule .txt{font-size:12px;color:var(--ink-soft);line-height:1.55} .rule .txt b{color:var(--ink)}
+  .rule .txt .now{display:block;margin-top:5px;font-weight:700;color:var(--green-d)}
+
+  .stdnote{margin-top:16px;background:var(--cream-2);border:1px solid var(--line);border-left:3px solid var(--olive);
+    border-radius:10px;padding:13px 16px;font-size:12.5px;color:var(--ink-soft);line-height:1.65} .stdnote b{color:var(--ink)}
+
+  /* Accordion */
+  details.acc{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);margin-top:16px;overflow:hidden}
+  details.acc summary{list-style:none;cursor:pointer;background:var(--olive);color:#fff;padding:14px 18px;display:flex;align-items:center;gap:14px}
+  details.acc summary::-webkit-details-marker{display:none}
+  .acc-title{font-size:18px;font-weight:800;letter-spacing:-.3px}
+  .acc-hint{font-size:12px;color:#E7EBDD;font-weight:500;margin-top:2px}
+  .acc-sum{margin-left:auto;font-size:12.5px;font-weight:600;color:#E7EBDD;font-variant-numeric:tabular-nums;text-align:right;line-height:1.45}
+  .acc-sum b{color:#fff}
+  .acc-chev{flex:none;transition:transform .2s;font-size:15px} details.acc[open] .acc-chev{transform:rotate(180deg)}
+  .acc-body{padding:20px 22px 22px}
+  .inputrow{display:flex;gap:14px;flex-wrap:wrap} .inputrow .field{max-width:200px;margin-bottom:0}
+
+  .bricks{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:14px}
+  .brick{background:var(--cream-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px}
+  .brick .bico{flex:none;border-radius:5px;border:2px solid var(--ink-soft)}
+  .brick.b7 .bico{width:20px;height:20px;background:var(--arataş)}
+  .brick.b14 .bico{width:34px;height:15px;background:var(--kilavuz)}
+  .brick.bbims .bico{width:34px;height:19px;background:var(--kilavuz)}
+  .brick .btxt .bn{font-size:12px;font-weight:700;color:var(--ink)}
+  .brick .btxt .bd{font-size:11px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+  .brick .bcount{margin-left:auto;text-align:right}
+  .brick .bcount .bv{font-size:22px;font-weight:800;color:var(--green-d);font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+  .brick .bcount .bu{font-size:11px;font-weight:600;color:var(--ink-soft)}
+  .seclabel{margin-top:18px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;font-weight:700;color:var(--ink-soft)}
+
+  /* Sekmeler */
+  .tabs{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+  .tabbtn{cursor:pointer;font-family:inherit;font-weight:700;font-size:14px;padding:11px 20px;
+    border-radius:11px;border:1px solid var(--line);background:var(--cream-2);color:var(--ink);
+    box-shadow:var(--shadow);transition:.15s}
+  .tabbtn:hover{background:#fff}
+  .tabbtn.active{background:var(--olive);border-color:var(--olive);color:#fff}
+
+  /* ============ YATAY SONDAJ ============ */
+  .hddgrid{display:grid;grid-template-columns:320px 1fr;gap:18px;margin-top:16px;align-items:start}
+  @media(max-width:960px){.hddgrid{grid-template-columns:1fr}}
+  .hddcards{display:flex;flex-direction:column;gap:9px;margin-top:12px}
+  .hddcards .rcard{padding:11px 14px}
+  .hddcards .rcard .val{font-size:21px}
+  .hddcards .rcard.hero .val{font-size:25px}
+  .capnote{margin-top:10px;font-size:11.5px;font-weight:600;color:var(--ink-soft);background:var(--cream-2);
+    border:1px solid var(--line);border-radius:9px;padding:8px 11px;text-align:center}
+  .capnote.full{color:#8a5a2a;background:#FBEFE2;border-color:#EAD3B8}
+  .addbtn:disabled{opacity:.45;cursor:not-allowed;pointer-events:none}
+  .hdddiagram{background:#F8FAFB;border:1px solid var(--line);border-radius:12px;padding:12px 10px}
+  .hdddiagram svg{display:block;width:100%;height:auto}
+  .hddrule{margin-top:14px;background:repeating-linear-gradient(45deg,#E8C52C 0 14px,#4A3E30 14px 28px);padding:5px;border-radius:11px}
+  .hddrule .inner{background:var(--cream-2);color:var(--ink);border-radius:8px;padding:12px 16px;font-size:13px;font-weight:600;
+    display:flex;gap:10px;align-items:center;justify-content:center;text-align:center}
+  .hddrule b{color:var(--red)}
+  .hddtablewrap{margin-top:18px;overflow-x:auto}
+  table.hddtable{width:100%;border-collapse:collapse;font-size:13px;color:var(--ink)}
+  .hddtable th{background:var(--olive);color:#fff;font-weight:700;padding:10px 13px;text-align:left;border:1px solid #3A4526;font-size:12px}
+  .hddtable td{padding:10px 13px;border:1px solid var(--line);font-variant-numeric:tabular-nums;background:#fff}
+  .hddtable tr.on td{background:#EEF2E6;color:var(--green-d);font-weight:700;border-color:#C9D6B4}
+  .hddnote{margin-top:12px;font-size:11.5px;color:var(--ink-soft);line-height:1.6}
+  /* ============ GENEL BİLGİLER ============ */
+  .gsteps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+  @media(max-width:760px){.gsteps{grid-template-columns:1fr}}
+  .gstep{background:var(--cream-2);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+  .gstep .gnum{width:30px;height:30px;border-radius:50%;background:var(--olive);color:#fff;font-weight:800;
+    display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:14px}
+  .gstep .gic{font-size:30px;line-height:1;margin-bottom:8px}
+  .gstep h4{margin:.2em 0 .4em;font-size:14px;color:var(--ink);font-weight:800}
+  .gstep p{margin:0;font-size:12px;color:var(--ink-soft);line-height:1.55}
+  .garrow{display:none}
+  .gsvgbox{background:#F8FAFB;border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:14px}
+  .gsvgbox svg{display:block;width:100%;height:auto;max-width:840px;margin:0 auto}
+  .gtwo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;align-items:start}
+  @media(max-width:820px){.gtwo{grid-template-columns:1fr}}
+  .gh4{font-size:12.5px;font-weight:800;color:var(--olive);margin:0 0 8px;text-transform:uppercase;letter-spacing:.4px}
+  .gbullets{margin:10px 0 0;padding-left:18px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+  .gbullets b{color:var(--ink)}
+  .gchips{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:14px}
+  .hddrule.orange{background:repeating-linear-gradient(45deg,#E8C52C 0 14px,#B5432E 14px 28px)}
+  .tabbtn.pdf{margin-left:auto;background:#EFE6D6;border-color:#DCCFB4;color:var(--wood)}
+  .tabbtn.pdf:hover{background:#E7DAC2}
+
+  /* ============ YAZDIRMA / PDF ============ */
+  @media print{
+    @page{size:A4;margin:10mm}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    body{background:#fff}
+    .wrap{padding:0;max-width:none}
+    .tabs,.sig{display:none !important}
+    header,.panel{box-shadow:none}
+    #view-kanal,#view-hdd,#view-info{display:block !important}
+    #view-hdd,#view-info{break-before:page;page-break-before:always}
+    .panel,.rcard,.brick,.gstep,.rule,.hddrule,.gsvgbox,.hddtablewrap{break-inside:avoid;page-break-inside:avoid}
+    .diagram svg,.hdddiagram svg,.gsvgbox svg{max-height:150mm}
+  }
+
+  footer{margin-top:24px;text-align:center;color:var(--ink-soft);font-size:12px} footer .sig{width:249px;height:26px;margin:6px auto 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <h1><span class="c1">Enerji</span> <span class="c2">Kabloları</span></h1>
+      <span class="sub">Elektrik Dağıtım · Kanal Boyutlandırma, Yatay Sondaj ve Malzeme Hesabı</span>
+    </div>
+    <div class="sig" role="img" aria-label="Design by Oğuz GÜNDÜZ"></div>
+  </header>
+
+  <div class="tabs">
+    <button class="tabbtn active" id="tabKanal">Kanal Hesaplaması</button>
+    <button class="tabbtn" id="tabHdd">Yatay Sondaj</button>
+    <button class="tabbtn" id="tabInfo">Genel Bilgiler</button>
+    <button class="tabbtn pdf" id="pdfBtn">🖨️ PDF Çıktı</button>
+  </div>
+
+  <div id="view-kanal">
+  <!-- ============ PANEL 1 ============ -->
+  <div class="panel">
+    <h2 class="olive">Kanal Dip Genişliği Hesaplaması
+      <small>Güzergâh ve kanal tipini seçin, YG/AG devrelerini ekleyin; kesit tablodan çekilir, kanal ölçekli simüle edilir.</small>
+    </h2>
+
+    <div class="formula">
+      <div class="big" id="formulaBig"></div>
+      <div class="sub">G = Hedef kanal dip genişliği · d = Kablo dış çapı · l = Kablolar arası mesafe · a = Kablo–duvar mesafesi</div>
+    </div>
+
+    <div class="grid3">
+      <!-- SOL: girişler -->
+      <div>
+        <div class="two">
+          <div class="field">
+            <label>Kanal Güzergâhı</label>
+            <select class="hf" id="guzergah">
+              <option value="kaldirim">Kaldırım — 80 cm</option>
+              <option value="yolkenar">Yol Kenarı — 100 cm</option>
+              <option value="yolgecis">Yol Geçişi — 150 cm</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Kanal Tipi</label>
+            <select class="hf" id="tip">
+              <option value="sevli">Şevli (üst = dip + 20)</option>
+              <option value="sevsiz">Şevsiz (üst = dip)</option>
+              <option value="abone">Abone (50·20·20)</option>
+            </select>
+          </div>
+        </div>
+        <div class="field" style="margin-top:-6px"><div class="depthchip" id="depthchip"><span class="dot"></span><span id="depthTxt"></span></div></div>
+
+        <div class="field">
+          <label>Kanala Kablo Ekle</label>
+          <div class="addbtns">
+            <button class="addbtn yg" id="addYG"><span class="plus">+</span> YG Devresi <small style="opacity:.85;font-weight:600">(3'lü)</small></button>
+            <button class="addbtn ag" id="addAG"><span class="plus">+</span> AG Kablo</button>
+          </div>
+          <div class="addhelp"><span class="kyg">YG devresi</span> = 3 özdeş kablo (kırmızı). <span class="kag">AG kablo</span> = tek kablo (siyah).</div>
+          <div class="clist" id="clist"></div>
+        </div>
+      </div>
+
+      <!-- ORTA: çizim -->
+      <div>
+        <div class="diagram"><svg id="svg" viewBox="0 0 900 380" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Kanal kesiti"></svg></div>
+        <div class="leg">
+          <span><i class="syg"></i>YG kablo</span><span><i class="sag"></i>AG kablo</span>
+          <span><i class="s7"></i>Ara taş 7×7×14</span><span><i class="s14"></i>Devre ayırıcı 40×14×5</span>
+          <span><i class="skil"></i>Kılavuz Bims 50×20×6</span><span><i class="skum"></i>Kum</span><span><i class="sdol"></i>Dolgu</span>
+        </div>
+      </div>
+
+      <!-- SAĞ: kanal detay / malzeme -->
+      <div class="matcol">
+        <div class="mhead">Kanal Detay Verileri</div>
+        <div class="matin">
+          <div class="field"><label>Uzunluk (m)</label><input class="hf" id="len" type="text" inputmode="decimal" value="100" autocomplete="off"></div>
+          <div class="field"><label>7'lik aralık (m)</label><input class="hf" id="interval" type="text" inputmode="decimal" value="1" autocomplete="off"></div>
+          <div class="field"><label>Kum yoğ. (t/m³)</label><input class="hf" id="kumDens" type="text" inputmode="decimal" value="1,6" autocomplete="off"></div>
+          <div class="field"><label>Dolgu yoğ. (t/m³)</label><input class="hf" id="dolguDens" type="text" inputmode="decimal" value="1,9" autocomplete="off"></div>
+        </div>
+        <div class="results" id="volresults"></div>
+        <div class="infoline" id="dims"></div>
+        <div class="mlabel">Tuğla / Bims Adedi</div>
+        <div class="bricks" id="bricks"></div>
+        <div class="mininote">Kum yük. = 10 + en büyük çap + 10 cm; kablo hacmi kumdan düşülür. Ara taş: (iç 7'likler + 2 uç) × sıra. Ayırıcı: her 14 cm sınırına ⌈L/0,40⌉. Kılavuz Bims: üst kapama alanı ÷ (0,50×0,20).</div>
+      </div>
+    </div>
+
+    <div class="results" id="results"></div>
+    <div class="solved" id="solved"></div>
+    <div id="badge"></div>
+
+    <div class="rules">
+      <div class="rule" id="ruleL"><div class="badgeL">l</div>
+        <div class="txt"><b>7 cm ara taş.</b> Devre içi (YG'nin 3 fazı) ve yan yana AG kablolar arası. d &gt; 7 cm ise l = d.<span class="now" id="ruleLnow"></span></div></div>
+      <div class="rule g14" id="ruleG14"><div class="badgeL">14</div>
+        <div class="txt"><b>14 cm devre ayırıcı.</b> YG'nin bulunduğu her sınırda (YG↔YG, YG↔AG). İki AG arası 7 cm.<span class="now" id="ruleG14now"></span></div></div>
+      <div class="rule" id="ruleA"><div class="badgeL">a</div>
+        <div class="txt"><b>Kablo–duvar (a).</b> d &gt; 7 cm ise a = d; aksi hâlde min. 7 cm. Büyük çap esas alınır.<span class="now" id="ruleAnow"></span></div></div>
+    </div>
+
+    <div class="stdnote">
+      <b>Güzergâh</b> derinliği belirler (Kaldırım 80 · Yol Kenarı 100 · Yol Geçişi 150 cm). <b>Kanal tipi:</b> Şevli → üst = dip + 20; Şevsiz → üst = dip (düşey duvar); Abone → 50·20·20 sabit (güzergâhtan bağımsız). Alttan üste: kum yataklama (kablolar) → kılavuz tuğlaları → dolgu malzemesi; ikaz bandı kılavuzun 20 cm üstündedir.
+    </div>
+  </div>
+
+  </div><!-- /view-kanal -->
+
+  <!-- ============ YATAY SONDAJ ============ -->
+  <div id="view-hdd" hidden>
+    <div class="panel">
+      <h2 class="olive">Yatay Sondaj Tekniği (HDD) Çap Kriterleri
+        <small>Açık kazı yapılamayan karayolu, demiryolu ve nehir geçişlerinde kullanılan delgi çapı standartları.</small>
+      </h2>
+
+      <div class="hddgrid">
+        <div>
+          <div class="field">
+            <label>Boruya Çekilecek Kablolar</label>
+            <div class="addbtns">
+              <button class="addbtn yg" id="hddAddYG"><span class="plus">+</span> YG Devresi <small style="opacity:.85;font-weight:600">(3'lü)</small></button>
+              <button class="addbtn ag" id="hddAddAG"><span class="plus">+</span> AG Kablo</button>
+            </div>
+            <div class="addhelp"><span class="kyg">YG devresi</span> = 3 özdeş kablo. <span class="kag">AG kablo</span> = tek kablo.</div>
+            <div class="clist" id="hddlist"></div>
+          </div>
+          <div class="hddcards" id="hddcards"></div>
+          <div id="hddwarnbox"></div>
+        </div>
+
+        <div>
+          <div class="hdddiagram"><svg id="hddsvg" viewBox="0 0 520 250" preserveAspectRatio="xMidYMid meet" role="img" aria-label="HDD delgi kesitleri"></svg></div>
+          <div class="hddrule"><div class="inner">⚠️ <span><b>Kural:</b> Zemin ile boru dış kısmı arasında kesinlikle boşluk kalmayacaktır.</span></div></div>
+        </div>
+      </div>
+
+      <div class="hddtablewrap">
+        <table class="hddtable" id="hddtable">
+          <thead><tr><th>Delik Çapı Ölçüleri</th><th>Ödemeye esas delik çapı (mm)</th><th>Çekilecek devre sayısı</th><th>Kablo-Boru sayısı</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="hddnote">Demet çapı, seçilen kabloların dış çaplarından daire istifleme katsayısıyla tahmin edilir; sınıf seçiminde demet çapı, devre sayısı ve kablo sayısı kriterlerinden en büyüğü esas alınır.</div>
+    </div>
+  </div>
+
+  <!-- ============ GENEL BİLGİLER ============ -->
+  <div id="view-info" hidden>
+
+    <div class="panel">
+      <h2 class="olive">1 · Kanal Hazırlığı
+        <small>Kazı öncesi ve kazı sırasında uyulması gereken hazırlık adımları.</small></h2>
+      <div class="gsteps">
+        <div class="gstep"><div class="gnum">1</div><div class="gic">📄</div><h4>Ruhsat ve Onay</h4>
+          <p>Kazı öncesi belediye/ilgili kurumlardan ruhsat işlemlerinin tamamlanması ve güzergâhın kontrol elemanlarıyla teyit edilmesi.</p></div>
+        <div class="gstep"><div class="gnum">2</div><div class="gic">🚧</div><h4>Çevre ve Can Güvenliği</h4>
+          <p>Halk sağlığını tehlikeye atmamak için kazı güzergâhı boyunca bariyer, tel çit ve halat çekilmesi.</p></div>
+        <div class="gstep"><div class="gnum">3</div><div class="gic">🚨</div><h4>Görsel Uyarıcılar</h4>
+          <p>Gece ve gündüz görünürlüğü için kırmızı ışıklar ve standart uyarı levhalarının yerleştirilmesi.</p></div>
+      </div>
+      <div class="hddrule orange"><div class="inner">⚠️ <span><b>Kritik kural:</b> Yol geçişlerinde trafiğin tamamen aksamaması için kazı, yolun <b>en az yarısı trafiğe açık</b> kalacak şekilde planlanmalıdır.</span></div></div>
+    </div>
+
+    <div class="panel">
+      <h2 class="olive">2 · Alt Yapı Tesislerine Güvenli Yaklaşım Uzaklıkları
+        <small>Kablo güzergâhı boyunca mevcut yeraltı tesislerine bırakılması gereken minimum mesafeler.</small></h2>
+      <div class="gsvgbox"><svg viewBox="0 0 780 252" role="img" aria-label="Altyapı yaklaşım mesafeleri">
+<defs>
+ <marker id="ga" markerWidth="10" markerHeight="10" refX="7.5" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10 Z" fill="#45502E"/></marker>
+ <marker id="gaS" markerWidth="10" markerHeight="10" refX="1.5" refY="5" orient="auto"><path d="M9,0 L0,5 L9,10 Z" fill="#45502E"/></marker>
+</defs>
+<line x1="10" y1="62" x2="770" y2="62" stroke="#4A3E30" stroke-width="2.2"/><line x1="16" y1="54" x2="23" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="33" y1="54" x2="40" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="50" y1="54" x2="57" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="67" y1="54" x2="74" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="84" y1="54" x2="91" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="101" y1="54" x2="108" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="118" y1="54" x2="125" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="135" y1="54" x2="142" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="152" y1="54" x2="159" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="169" y1="54" x2="176" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="186" y1="54" x2="193" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="203" y1="54" x2="210" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="220" y1="54" x2="227" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="237" y1="54" x2="244" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="254" y1="54" x2="261" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="271" y1="54" x2="278" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="288" y1="54" x2="295" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="305" y1="54" x2="312" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="322" y1="54" x2="329" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="339" y1="54" x2="346" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="356" y1="54" x2="363" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="373" y1="54" x2="380" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="390" y1="54" x2="397" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="407" y1="54" x2="414" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="424" y1="54" x2="431" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="441" y1="54" x2="448" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="458" y1="54" x2="465" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="475" y1="54" x2="482" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="492" y1="54" x2="499" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="509" y1="54" x2="516" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="526" y1="54" x2="533" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="543" y1="54" x2="550" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="560" y1="54" x2="567" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="577" y1="54" x2="584" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="594" y1="54" x2="601" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="611" y1="54" x2="618" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="628" y1="54" x2="635" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="645" y1="54" x2="652" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="662" y1="54" x2="669" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="679" y1="54" x2="686" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="696" y1="54" x2="703" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="713" y1="54" x2="720" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="730" y1="54" x2="737" y2="62" stroke="#C9BB9C" stroke-width="1.2"/><line x1="747" y1="54" x2="754" y2="62" stroke="#C9BB9C" stroke-width="1.2"/>
+<rect x="52" y="16" width="92" height="152" fill="#DDD8CD" stroke="#6E6051" stroke-width="1.6"/>
+<rect x="36" y="168" width="124" height="26" fill="#D2CCBF" stroke="#6E6051" stroke-width="1.6"/>
+<line x1="74" y1="22" x2="74" y2="164" stroke="#B4AC9C" stroke-width="1.4"/><line x1="98" y1="22" x2="98" y2="164" stroke="#B4AC9C" stroke-width="1.4"/><line x1="122" y1="22" x2="122" y2="164" stroke="#B4AC9C" stroke-width="1.4"/>
+<text x="98" y="12" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#4A3E30">Bina temel betonu</text>
+<polygon points="318,62 348,190 452,190 482,62" fill="#FBF8F0" stroke="#4A3E30" stroke-width="2.2" stroke-linejoin="round"/>
+<circle cx="366" cy="176" r="11" fill="#C62828" stroke="rgba(0,0,0,.25)"/><circle cx="400" cy="176" r="11" fill="#C62828" stroke="rgba(0,0,0,.25)"/><circle cx="434" cy="176" r="11" fill="#C62828" stroke="rgba(0,0,0,.25)"/>
+<text x="400" y="92" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#4A3E30">Enerji (Elk.)</text>
+<text x="400" y="106" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#4A3E30">kabloları</text>
+<polygon points="598,62 620,172 722,172 744,62" fill="#FBF8F0" stroke="#4A3E30" stroke-width="2.2" stroke-linejoin="round"/>
+<circle cx="671" cy="146" r="21" fill="#3F9E7D" stroke="#2C7A5E" stroke-width="2"/><circle cx="671" cy="146" r="12" fill="#63BD9C"/>
+<text x="671" y="30" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#4A3E30">Diğer altyapı tesisi</text>
+<text x="671" y="44" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#4A3E30">veya kablosu</text>
+<rect x="586" y="196" width="172" height="19" rx="4" fill="#C8763C"/>
+<text x="672" y="209" text-anchor="middle" font-family="Inter" font-size="9.5" font-weight="800" fill="#fff">Petrol ve gaz boruları hariç!</text>
+<line x1="147" y1="118" x2="315" y2="118" stroke="#45502E" stroke-width="2" marker-start="url(#gaS)" marker-end="url(#ga)"/>
+<text x="231" y="108" text-anchor="middle" font-family="Inter" font-size="13" font-weight="800" fill="#45502E">l₁ ≥ 50 cm</text>
+<line x1="485" y1="130" x2="595" y2="130" stroke="#45502E" stroke-width="2" marker-start="url(#gaS)" marker-end="url(#ga)"/>
+<text x="540" y="120" text-anchor="middle" font-family="Inter" font-size="13" font-weight="800" fill="#45502E">l₃ ≥ 60 cm</text>
+<line x1="160" y1="194" x2="160" y2="228" stroke="#6E6051" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="400" y1="190" x2="400" y2="228" stroke="#6E6051" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="162" y1="224" x2="398" y2="224" stroke="#45502E" stroke-width="2" marker-start="url(#gaS)" marker-end="url(#ga)"/>
+<text x="280" y="214" text-anchor="middle" font-family="Inter" font-size="13" font-weight="800" fill="#45502E">l₂ ≥ 70 cm</text>
+</svg></div>
+      <div class="gchips">
+        <div class="rcard"><div class="k">Bina temeli</div><div class="val">≥ 50<span class="u">cm</span></div></div>
+        <div class="rcard"><div class="k">Diğer tesis / kablo</div><div class="val">≥ 60<span class="u">cm</span></div></div>
+        <div class="rcard"><div class="k">Su ve kanalizasyon</div><div class="val">≥ 50<span class="u">cm</span></div></div>
+        <div class="rcard wood"><div class="k">Taşıt yolu altı derinlik</div><div class="val">≥ 1,0<span class="u">m</span></div></div>
+        <div class="rcard wood"><div class="k">Demiryolu altı derinlik</div><div class="val">≥ 1,5<span class="u">m</span></div></div>
+      </div>
+      <div class="stdnote"><b>Not:</b> Bu kurallar petrol ve doğal gaz hatlarını kapsamaz; ilgili tehlikeli hatlar için özel mesafeler bir sonraki bölümde belirtilmiştir.</div>
+    </div>
+
+    <div class="panel">
+      <h2 class="olive">3 · Doğal Gaz Boru Hatları ile Kesişim Kuralları
+        <small>Paralel gidiş ve kesişim durumlarında korunması gereken net mesafeler.</small></h2>
+      <div class="gtwo">
+        <div>
+          <div class="gh4">Paralel Gidiş</div>
+          <div class="gsvgbox" style="margin-top:0"><svg viewBox="0 0 360 158">
+<defs><marker id="gb" markerWidth="10" markerHeight="10" refX="7.5" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10 Z" fill="#45502E"/></marker>
+<marker id="gbS" markerWidth="10" markerHeight="10" refX="1.5" refY="5" orient="auto"><path d="M9,0 L0,5 L9,10 Z" fill="#45502E"/></marker></defs>
+<line x1="8" y1="34" x2="352" y2="34" stroke="#4A3E30" stroke-width="2"/><line x1="14" y1="26" x2="21" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="31" y1="26" x2="38" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="48" y1="26" x2="55" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="65" y1="26" x2="72" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="82" y1="26" x2="89" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="99" y1="26" x2="106" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="116" y1="26" x2="123" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="133" y1="26" x2="140" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="150" y1="26" x2="157" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="167" y1="26" x2="174" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="184" y1="26" x2="191" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="201" y1="26" x2="208" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="218" y1="26" x2="225" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="235" y1="26" x2="242" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="252" y1="26" x2="259" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="269" y1="26" x2="276" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="286" y1="26" x2="293" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="303" y1="26" x2="310" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="320" y1="26" x2="327" y2="34" stroke="#C9BB9C" stroke-width="1.2"/><line x1="337" y1="26" x2="344" y2="34" stroke="#C9BB9C" stroke-width="1.2"/>
+<circle cx="110" cy="102" r="20" fill="#E8C52C" stroke="#9A7E12" stroke-width="2.5"/><circle cx="110" cy="102" r="10" fill="#F3DB6B"/>
+<text x="110" y="140" text-anchor="middle" font-family="Inter" font-size="10" font-weight="700" fill="#9A7E12">Doğal gaz</text>
+<circle cx="252" cy="102" r="13" fill="#C62828" stroke="rgba(0,0,0,.3)"/>
+<text x="252" y="140" text-anchor="middle" font-family="Inter" font-size="10" font-weight="700" fill="#C62828">Enerji kablosu</text>
+<line x1="132" y1="102" x2="237" y2="102" stroke="#45502E" stroke-width="2" marker-start="url(#gbS)" marker-end="url(#gb)"/>
+<text x="184" y="92" text-anchor="middle" font-family="Inter" font-size="12" font-weight="800" fill="#45502E">min. 60 cm net</text>
+</svg></div>
+          <div class="gbullets" style="padding-left:0;list-style:none"><b>Paralel gidiş:</b> Hatların yan yana devam ettiği güzergâhlarda izolasyon ve güvenlik amacıyla <b>min. 60 cm net</b> aralık kesinlikle korunmalıdır.</div>
+        </div>
+        <div>
+          <div class="gh4">Kesişim Durumu</div>
+          <div class="gsvgbox" style="margin-top:0"><svg viewBox="0 0 360 158">
+<defs><marker id="gc" markerWidth="10" markerHeight="10" refX="7.5" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10 Z" fill="#45502E"/></marker>
+<marker id="gcS" markerWidth="10" markerHeight="10" refX="1.5" refY="5" orient="auto"><path d="M9,0 L0,5 L9,10 Z" fill="#45502E"/></marker></defs>
+<rect x="40" y="44" width="280" height="18" rx="9" fill="#E8C52C" stroke="#9A7E12" stroke-width="2"/>
+<text x="180" y="36" text-anchor="middle" font-family="Inter" font-size="10" font-weight="700" fill="#9A7E12">Doğal gaz hattı (üstten geçiş)</text>
+<circle cx="180" cy="122" r="13" fill="#C62828" stroke="rgba(0,0,0,.3)"/>
+<text x="252" y="127" font-family="Inter" font-size="10" font-weight="700" fill="#C62828">Enerji kablosu</text>
+<line x1="180" y1="65" x2="180" y2="106" stroke="#45502E" stroke-width="2" marker-start="url(#gcS)" marker-end="url(#gc)"/>
+<text x="188" y="90" font-family="Inter" font-size="12" font-weight="800" fill="#45502E">min. 40 cm (dikey)</text>
+</svg></div>
+          <div class="gbullets" style="padding-left:0;list-style:none"><b>Kesişim durumu:</b> Kesişme noktalarında, olası çökme veya baskıları önlemek için dikey düzlemde <b>min. 40 cm net</b> güvenlik kleransı sağlanmalıdır.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 class="olive">4 · Çaprazlama (Transpozisyon) ve Montaj İşlemleri
+        <small>Uzun mesafe yönetimi: aşırı gerilim indüklenmesini önlemek ve kablo yığılmalarını yönetmek için saha teknikleri.</small></h2>
+      <div class="gtwo">
+        <div>
+          <div class="gh4">Transpozisyon (Çaprazlama)</div>
+          <div class="gsvgbox" style="margin-top:0"><svg viewBox="0 0 760 158">
+<defs><marker id="gd" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 Z" fill="#6E6051"/></marker>
+<marker id="gdS" markerWidth="9" markerHeight="9" refX="1.5" refY="4.5" orient="auto"><path d="M8,0 L0,4.5 L8,9 Z" fill="#6E6051"/></marker></defs>
+<path d="M46,46 L232,46 L292,76 L448,76 L508,106 L694,106" fill="none" stroke="#C8763C" stroke-width="3.4" stroke-linejoin="round"/><text x="34" y="50" text-anchor="end" font-family="Inter" font-size="11" font-weight="800" fill="#C8763C">L1</text><text x="704" y="110" font-family="Inter" font-size="11" font-weight="800" fill="#C8763C">L1</text><path d="M46,76 L232,76 L292,106 L448,106 L508,46 L694,46" fill="none" stroke="#3E7CB1" stroke-width="3.4" stroke-linejoin="round"/><text x="34" y="80" text-anchor="end" font-family="Inter" font-size="11" font-weight="800" fill="#3E7CB1">L2</text><text x="704" y="50" font-family="Inter" font-size="11" font-weight="800" fill="#3E7CB1">L2</text><path d="M46,106 L232,106 L292,46 L448,46 L508,76 L694,76" fill="none" stroke="#6E6051" stroke-width="3.4" stroke-linejoin="round"/><text x="34" y="110" text-anchor="end" font-family="Inter" font-size="11" font-weight="800" fill="#6E6051">L3</text><text x="704" y="80" font-family="Inter" font-size="11" font-weight="800" fill="#6E6051">L3</text>
+<line x1="46" y1="24" x2="262" y2="24" stroke="#6E6051" stroke-width="1.4" marker-start="url(#gdS)" marker-end="url(#gd)"/>
+<line x1="262" y1="24" x2="478" y2="24" stroke="#6E6051" stroke-width="1.4" marker-start="url(#gdS)" marker-end="url(#gd)"/>
+<line x1="478" y1="24" x2="694" y2="24" stroke="#6E6051" stroke-width="1.4" marker-start="url(#gdS)" marker-end="url(#gd)"/>
+<text x="154" y="16" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#6E6051">A/3</text>
+<text x="370" y="16" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#6E6051">A/3</text>
+<text x="586" y="16" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#6E6051">A/3</text>
+<line x1="46" y1="138" x2="694" y2="138" stroke="#6E6051" stroke-width="1.4" marker-start="url(#gdS)" marker-end="url(#gd)"/>
+<text x="370" y="130" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#6E6051">A (toplam güzergâh)</text>
+</svg></div>
+          <ul class="gbullets">
+            <li><b>2000 metreden uzun</b> güzergâhlarda, tek faz iletkenli kablolarda (L1, L2, L3) akım dengesizliğini önlemek için yapılır.</li>
+            <li>Toplam uzunluk (A) <b>üç eşit parçaya (A/3)</b> bölünerek fazların yerleri fiziksel olarak değiştirilir.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="gh4">Sekiz (8) Çizme Metodu</div>
+          <div class="gsvgbox" style="margin-top:0"><svg viewBox="0 0 300 168">
+<rect x="26" y="58" width="12" height="54" fill="#8A7B64"/><circle cx="32" cy="72" r="17" fill="none" stroke="#8A7B64" stroke-width="5"/>
+<text x="32" y="130" text-anchor="middle" font-family="Inter" font-size="9.5" font-weight="700" fill="#6E6051">Makara</text>
+<path d="M58,96 C 92,32 156,34 182,74 C 208,114 262,116 268,74 C 272,44 236,30 214,52" fill="none" stroke="#4A3E30" stroke-width="3.2" stroke-linecap="round"/>
+<path d="M58,96 C 84,140 138,142 166,106" fill="none" stroke="#4A3E30" stroke-width="3.2" stroke-linecap="round" opacity=".55"/>
+<text x="168" y="158" text-anchor="middle" font-family="Inter" font-size="10.5" font-weight="700" fill="#6E6051">Kablo, yerde büyük bir "8" çizecek şekilde serilir</text>
+</svg></div>
+          <ul class="gbullets">
+            <li>Makaranın kanal ortasına yerleştirildiği durumlarda veya engelli geçişlerde kullanılır.</li>
+            <li>Kalan kablo, burulmayı önlemek için yerde büyük bir <b>"8" rakamı</b> çizecek şekilde serilir.</li>
+            <li>Bağlantı noktasına geldiğinde üst sıra tersine açılarak döşenir.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 class="olive">5 · Kablo Dizilimi ve Kıvrılma Sınırları
+        <small>Altlı üstlü dizilim kuralı ve minimum kıvrılma yarıçapları.</small></h2>
+      <div class="gtwo">
+        <div>
+          <div class="gh4">Altlı Üstlü Dizilim</div>
+          <div class="gsvgbox" style="margin-top:0"><svg viewBox="0 0 250 208">
+<defs><marker id="ge" markerWidth="10" markerHeight="10" refX="7.5" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10 Z" fill="#C8763C"/></marker>
+<marker id="geS" markerWidth="10" markerHeight="10" refX="1.5" refY="5" orient="auto"><path d="M9,0 L0,5 L9,10 Z" fill="#C8763C"/></marker></defs>
+<rect x="34" y="14" width="14" height="180" fill="#D9D3C6" stroke="#6E6051"/>
+<rect x="176" y="14" width="14" height="180" fill="#D9D3C6" stroke="#6E6051"/>
+<rect x="34" y="188" width="156" height="10" fill="#D2CCBF" stroke="#6E6051"/>
+<line x1="48" y1="96" x2="176" y2="96" stroke="#6E6051" stroke-width="3"/>
+<circle cx="82" cy="80" r="9" fill="#1E1E1E"/><circle cx="112" cy="80" r="9" fill="#1E1E1E"/><circle cx="142" cy="80" r="9" fill="#1E1E1E"/>
+<text x="112" y="58" text-anchor="middle" font-family="Inter" font-size="10.5" font-weight="800" fill="#1E1E1E">AG kabloları (üstte)</text>
+<circle cx="80" cy="170" r="14" fill="#C62828" stroke="rgba(0,0,0,.25)"/><circle cx="113" cy="170" r="14" fill="#C62828" stroke="rgba(0,0,0,.25)"/><circle cx="146" cy="170" r="14" fill="#C62828" stroke="rgba(0,0,0,.25)"/>
+<text x="112" y="140" text-anchor="middle" font-family="Inter" font-size="10.5" font-weight="800" fill="#C62828">YG kabloları (altta)</text>
+<line x1="216" y1="90" x2="216" y2="154" stroke="#C8763C" stroke-width="2" marker-start="url(#geS)" marker-end="url(#ge)"/>
+<text x="224" y="118" font-family="Inter" font-size="10.5" font-weight="800" fill="#C8763C" transform="rotate(90 224 118)">en az 20 cm</text>
+</svg></div>
+          <div class="hddrule orange" style="margin-top:12px"><div class="inner">⚠️ <span><b>Kural:</b> Zaruret olmadıkça kablolar üst üste döşenmez. Döşenecekse <b>YG daima alta, AG üste</b> gelir. Katlar arası mesafe, gerilim seviyesi ne olursa olsun <b>en az 20 cm</b> olmalıdır.</span></div></div>
+        </div>
+        <div>
+          <div class="gh4">Kablo Kıvrılma Yarıçapları</div>
+          <div class="hddtablewrap" style="margin-top:0">
+            <table class="hddtable">
+              <thead><tr><th>Kablo damar sayısı</th><th>XLPE ve PVC (AG)</th><th>XLPE ve PVC (YG)</th><th>Zırhlı kablolar</th></tr></thead>
+              <tbody>
+                <tr><td>Tek damarlı</td><td>15 × D</td><td>15 × D</td><td>15 × D</td></tr>
+                <tr><td>Üç damarlı</td><td>12 × D</td><td>15 × D</td><td>15 × D</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="gsvgbox"><svg viewBox="0 0 240 186">
+<defs><marker id="gf" markerWidth="10" markerHeight="10" refX="7.5" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10 Z" fill="#3E7CB1"/></marker></defs>
+<path d="M62,170 L62,96 A54,54 0 0 1 116,42 L196,42" fill="none" stroke="#4A3E30" stroke-width="9" stroke-linecap="round"/>
+<path d="M62,170 L62,96 A54,54 0 0 1 116,42 L196,42" fill="none" stroke="#C8763C" stroke-width="2.4" stroke-dasharray="6 6" stroke-linecap="round"/>
+<line x1="116" y1="96" x2="80" y2="60" stroke="#3E7CB1" stroke-width="2" marker-end="url(#gf)"/>
+<text x="104" y="86" font-family="Inter" font-size="13" font-weight="800" fill="#3E7CB1">R</text>
+<line x1="50" y1="176" x2="74" y2="176" stroke="#6E6051" stroke-width="1.6"/>
+<text x="86" y="180" font-family="Inter" font-size="12" font-weight="800" fill="#6E6051">D</text>
+<text x="120" y="176" font-family="Inter" font-size="9.5" fill="#6E6051">D = kablonun dış çapı</text>
+</svg></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 class="olive">6 · İkaz Bantları ve Güzergâh İşaretleme
+        <small>PVC ikaz bandı özellikleri ve işaret plakalarının tesis kuralları.</small></h2>
+      <div class="gtwo">
+        <div>
+          <div class="gh4">PVC İkaz Bandı</div>
+          <div class="gsvgbox" style="margin-top:0"><svg viewBox="0 0 400 150">
+<rect x="86" y="96" width="230" height="26" fill="#D2CCBF" stroke="#6E6051"/>
+<rect x="24" y="40" width="352" height="50" rx="4" fill="#C62828" stroke="#8E1414" stroke-width="2"/>
+<text x="200" y="61" text-anchor="middle" font-family="Inter" font-size="13" font-weight="800" fill="#3d0505">ÖLÜM TEHLİKESİ</text>
+<text x="200" y="79" text-anchor="middle" font-family="Inter" font-size="11" font-weight="800" fill="#3d0505">TEDAŞ YG / AG ENERJİ KABLOSU</text>
+<line x1="24" y1="130" x2="376" y2="130" stroke="#6E6051" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="200" y="144" text-anchor="middle" font-family="Inter" font-size="10" font-weight="700" fill="#6E6051">genişlik 120 mm · kalınlık 0,1 mm · kırmızı</text>
+</svg></div>
+          <ul class="gbullets">
+            <li><b>0,1 mm</b> kalınlık, <b>120 mm</b> genişlik, <b>kırmızı</b> renk.</li>
+            <li>Harfler kabartma veya siyah renkli, en az <b>60 mm</b> boyunda olmalıdır.</li>
+            <li>Koruyucu/kılavuz seviyesinin ~20 cm üzerine serilir.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="gh4">İşaret Plakaları</div>
+          <div class="gsvgbox" style="margin-top:0"><svg viewBox="0 0 430 170">
+<rect x="28" y="30" width="164" height="98" rx="12" fill="#fff" stroke="#4A3E30" stroke-width="3"/>
+<text x="110" y="56" text-anchor="middle" font-family="Inter" font-size="9" font-weight="700" fill="#6E6051">TEDAŞ</text>
+<text x="110" y="84" text-anchor="middle" font-family="Inter" font-size="17" font-weight="800" fill="#4A3E30">AG ⚡ YG</text>
+<text x="110" y="110" text-anchor="middle" font-family="Inter" font-size="13" font-weight="800" fill="#4A3E30">ELEKTRİK</text>
+<ellipse cx="322" cy="79" rx="88" ry="52" fill="#fff" stroke="#4A3E30" stroke-width="3"/>
+<text x="322" y="58" text-anchor="middle" font-family="Inter" font-size="9" font-weight="700" fill="#6E6051">TEDAŞ</text>
+<text x="322" y="84" text-anchor="middle" font-family="Inter" font-size="16" font-weight="800" fill="#4A3E30">AG ⚡ YG</text>
+<text x="322" y="108" text-anchor="middle" font-family="Inter" font-size="12" font-weight="800" fill="#4A3E30">ELEKTRİK</text>
+<text x="110" y="150" text-anchor="middle" font-family="Inter" font-size="10" font-weight="700" fill="#6E6051">20 × 12 cm</text>
+<text x="322" y="150" text-anchor="middle" font-family="Inter" font-size="10" font-weight="700" fill="#6E6051">20 × 12 cm</text>
+</svg></div>
+          <div class="hddrule orange" style="margin-top:12px"><div class="inner">⚠️ <span><b>Kural:</b> Güzergâh boyunca <b>maks. 50 metrede bir</b>, ek/çaprazlama noktalarında ve yön değişimlerinde tesis edilmelidir. Kaplama yapılmayacak alanlarda beton bloklar üzerine yerleştirilir.</span></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="sig" role="img" aria-label="Design by Oğuz GÜNDÜZ"></div>
+    Enerji Kabloları · Elektrik Dağıtım Hesap Aracı
+  </footer>
+</div>
+
+<script>
+/* ================= KABLO VERİLERİ (dış çap mm) ================= */
+const YG_CU=[["1x25/16",33.5],["1x35/16",34.5],["1x50/16",36],["1x70/16",37.5],["1x95/16",39.5],["1x120/16",41.5],["1x150/25",43],["1x185/25",44.5],["1x240/25",47.5],["1x300/25",49.5],["1x400/35",53],["1x500/35",56],["1x630/35",60]];
+const YG_AL=[["1x35/16",42],["1x50/16",44.1],["1x70/16",45.8],["1x95/16",48.2],["1x120/16",50.5],["1x150/25",52.1],["1x185/25",54.2],["1x240/25",56.6],["1x300/25",58.5],["1x400/35",62.3],["1x500/35",65.8],["1x630/35",68]];
+const AG_2=[["2x1,5",11.6],["2x2,5",12.4],["2x4",14.2],["2x6",15.2],["2x10",17.6],["2x16",19.8],["2x25",23.2],["2x35",25.6],["2x50",29.0],["2x70",33.0],["2x95",38.0],["2x120",41.4],["2x150",45.8],["2x185",51.0],["2x240",57.0]];
+const AG_3=[["3x1,5",12.1],["3x2,5",12.9],["3x4",14.9],["3x6",15.9],["3x10",18.5],["3x16",20.9],["3x25",24.5],["3x35",27.1],["3x50",30.8],["3x70",35.4],["3x95",40.6],["3x120",44.2],["3x150",49.3],["3x185",54.5],["3x240",61.3]];
+const AG_3N=[["3x16+10",22.0],["3x25+16",25.8],["3x35+16",28.0],["3x50+25",32.2],["3x70+35",37.0],["3x95+50",42.4],["3x120+70",47.0],["3x150+70",51.0],["3x185+95",56.7],["3x240+120",63.6],["3x300+150",70.3],["3x400+185",78.5]];
+const AG_4=[["4x1,5",12.8],["4x2,5",13.8],["4x4",16.0],["4x6",17.2],["4x10",20.1],["4x16",22.7],["4x25",26.8],["4x35",29.7],["4x50",34.4],["4x70",39.4],["4x95",45.0],["4x120",49.3],["4x150",55.0],["4x185",61.0],["4x240",68.1]];
+
+const YG_GROUPS=[["Bakır XLPE","cu",YG_CU],["Alüminyum XLPE","al",YG_AL]];
+const AG_GROUPS=[["2 Damarlı NYY","2",AG_2],["3 Damarlı NYY","3",AG_3],["3 Damarlı (+nötr) NYY","3n",AG_3N],["4 Damarlı NYY","4",AG_4]];
+
+const REG={};
+function buildOptions(groups,kind){let html='';groups.forEach(([gL,gK,rows])=>{html+=`<optgroup label="${gL}">`;
+  rows.forEach(([name,mm])=>{const id=`${kind}:${gK}:${name}`,dcm=mm/10;REG[id]={d:dcm};html+=`<option value="${id}">${name} — ${dcm.toFixed(2).replace('.',',')} cm</option>`;});
+  html+=`</optgroup>`;});return html;}
+const YG_OPTS=buildOptions(YG_GROUPS,'YG'), AG_OPTS=buildOptions(AG_GROUPS,'AG');
+
+const GUZ={kaldirim:80,yolkenar:100,yolgecis:150};
+const TIP={sevli:{slope:20,minDip:40,abone:false},sevsiz:{slope:0,minDip:40,abone:false},abone:{slope:0,minDip:20,abone:true,depth:50}};
+
+const MIN=7,BRICK14=14,KOR=6,IKAZ=20,BED=10,COVER=10;
+let items=[{kind:'YG',id:'YG:al:1x150/25'}];
+
+const $=id=>document.getElementById(id);
+const fmt=(n,d=2)=>Number(n.toFixed(d)).toLocaleString('tr-TR',{maximumFractionDigits:d});
+const fmt3=n=>Number(n.toFixed(3)).toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:3});
+const parseNum=s=>{const v=parseFloat((''+s).replace(',','.'));return isNaN(v)?0:v;};
+const dOf=it=>REG[it.id]?REG[it.id].d:0;
+
+/* ================= HESAP ================= */
+function compute(){
+  const tp=TIP[$('tip').value], gz=$('guzergah').value;
+  const depth=tp.abone?tp.depth:GUZ[gz], minDip=tp.minDip, slope=tp.slope;
+  const allD=[]; items.forEach(it=>{const n=it.kind==='YG'?3:1;for(let i=0;i<n;i++)allD.push(dOf(it));});
+  const dMax=allD.length?Math.max(...allD):0, a=Math.max(dMax,MIN);
+  const segs=[{t:'a',len:a}];
+  items.forEach((it,idx)=>{
+    if(idx>0){const p=items[idx-1],bothAG=(p.kind==='AG'&&it.kind==='AG');
+      if(bothAG)segs.push({t:'l',len:Math.max(MIN,dOf(p),dOf(it)),sep:false}); else segs.push({t:'l',len:BRICK14,sep:true});}
+    const d=dOf(it),n=it.kind==='YG'?3:1,within=Math.max(d,MIN);
+    for(let i=0;i<n;i++){if(i>0)segs.push({t:'l',len:within,sep:false});segs.push({t:'d',len:d,kind:it.kind});}
+  });
+  segs.push({t:'a',len:a});
+  let G=0;segs.forEach(s=>G+=s.len);
+
+  const dip=Math.max(G,minDip), ust=dip+slope;
+  const L=Math.max(0,parseNum($('len').value)), interval=Math.max(0.05,parseNum($('interval').value)||1);
+  const kd=parseNum($('kumDens').value)||1.6, dd=parseNum($('dolguDens').value)||1.9;
+  const dipM=dip/100,ustM=ust/100,depM=depth/100;
+  const Vtot=(dipM+ustM)/2*depM*L;
+  const hsCm=Math.min(depth,BED+dMax+COVER), hs=hsCm/100;
+  const sps=depM>0?(ustM-dipM)/2/depM:0, wHs=dipM+2*sps*hs;
+  const Vsand=(dipM+wHs)/2*hs*L;
+  let Vcab=0;items.forEach(it=>{const n=it.kind==='YG'?3:1,dm=dOf(it)/100;Vcab+=n*Math.PI*(dm/2)*(dm/2)*L;});
+  const kum=Math.max(0,Vsand-Vcab), dolgu=Math.max(0,Vtot-Vsand);
+  const kumTon=kum*kd, dolguTon=dolgu*dd;
+
+  const n7=segs.filter(s=>s.t==='l'&&!s.sep).length, n14=segs.filter(s=>s.t==='l'&&s.sep).length;
+  const araPts=items.length? n7+2 : 0;   // devre içi/AG-AG 7'likler + 2 uç (a)
+  const rows=L>0?Math.floor(L/interval)+1:0;
+  const spacer7=araPts*rows, sep14=n14*(L>0?Math.ceil(L/0.40):0), bims=Math.ceil((wHs*L)/(0.50*0.20))||0;
+  const totalCables=items.reduce((s,it)=>s+(it.kind==='YG'?3:1),0), cableLen=totalCables*L;
+
+  return {tp,depth,minDip,slope,segs,a,dMax,G,dip,ust,L,interval,kd,dd,Vtot,kum,dolgu,kumTon,dolguTon,hsCm,n7,n14,araPts,rows,spacer7,sep14,bims,totalCables,cableLen};
+}
+
+function renderFormula(){
+  const single=items.length===1&&items[0].kind==='YG';
+  $('formulaBig').innerHTML=single
+    ?`G <span class="op">=</span> <span class="v">3</span><span class="op">×</span>d <span class="op">+</span> <span class="v">2</span><span class="op">×</span>l <span class="op">+</span> <span class="v">2</span><span class="op">×</span>a`
+    :`G <span class="op">=</span> Σd <span class="op">+</span> Σl <span class="op">+</span> <span class="v">2</span><span class="op">×</span>a`;
+}
+
+function renderList(){
+  const el=$('clist');
+  if(items.length===0){el.innerHTML=`<div class="cempty">Henüz kablo yok. <b>YG Devresi</b> veya <b>AG Kablo</b> ekleyin.</div>`;return;}
+  el.innerHTML=items.map((it,i)=>{const opts=it.kind==='YG'?YG_OPTS:AG_OPTS,d=dOf(it),kc=it.kind.toLowerCase();
+    return `<div class="crow"><span class="cdot ${kc}"></span><span class="cbadge ${kc}">${it.kind}</span>
+      <select data-i="${i}">${opts}</select><span class="dchip">d = ${fmt(d)} cm</span>
+      ${it.kind==='YG'?'<span class="cnote">×3</span>':''}<button class="del" data-del="${i}" title="Kaldır">×</button></div>`;}).join('');
+  el.querySelectorAll('select').forEach(sel=>{const i=+sel.dataset.i;sel.value=items[i].id;sel.addEventListener('change',()=>{items[i].id=sel.value;update();});});
+  el.querySelectorAll('[data-del]').forEach(btn=>btn.addEventListener('click',()=>{items.splice(+btn.dataset.del,1);update();}));
+}
+
+function renderResults(r){
+  $('results').innerHTML=
+    `<div class="rcard"><div class="k">Kablo–duvar <span class="let">(a)</span></div><div class="val">${fmt(r.a)}<span class="u">cm</span></div></div>`+
+    `<div class="rcard"><div class="k">En büyük çap <span class="let">(d)</span></div><div class="val">${fmt(r.dMax)}<span class="u">cm</span></div></div>`+
+    `<div class="rcard hero"><div class="k">Hesaplanan dip <span class="let">(G)</span></div><div class="val">${fmt(r.G)}<span class="u">cm</span></div></div>`+
+    `<div class="rcard"><div class="k">Uygulanan dip</div><div class="val">${fmt(r.dip)}<span class="u">cm</span></div></div>`+
+    `<div class="rcard wood"><div class="k">Üst genişlik</div><div class="val">${fmt(r.ust)}<span class="u">cm</span></div></div>`+
+    `<div class="rcard"><div class="k">Derinlik</div><div class="val">${fmt(r.depth)}<span class="u">cm</span></div></div>`;
+
+  if(items.length===0){$('solved').innerHTML=`<span style="color:var(--ink-soft);font-weight:600">Kanal boş — sonuç için kablo ekleyin.</span>`;}
+  else{const dP=r.segs.filter(s=>s.t==='d').map(s=>fmt(s.len)),gP=r.segs.filter(s=>s.t==='l').map(s=>fmt(s.len));
+    const gStr=gP.length?' <span class="op">+</span> ('+gP.join(' + ')+')':'';
+    $('solved').innerHTML=`G <span class="op">=</span> (${dP.join(' + ')})${gStr} <span class="op">+</span> 2<span class="op">×</span>${fmt(r.a)} <span class="op">=</span> <span class="res">${fmt(r.G)} cm</span>`+
+      `<span class="l2">Uygulanan: dip ${fmt(r.dip)} · üst ${fmt(r.ust)} · derinlik ${fmt(r.depth)} cm · ${r.tp.abone?'Abone':(r.slope>0?'Şevli':'Şevsiz')}</span>`;}
+
+  const b=$('badge'),min=r.minDip;
+  if(items.length===0)b.innerHTML='';
+  else if(r.G<=min)b.innerHTML=`<div class="badge ok"><span class="ic">✓</span>Standart dip ${min} cm yeterli — kablolar sığıyor.</div>`;
+  else b.innerHTML=`<div class="badge warn"><span class="ic">!</span>Standart ${min} cm'i aşıyor — dip ${fmt(r.G)} · üst ${fmt(r.ust)} cm'e genişletilmeli.</div>`;
+
+  const over=r.dMax>MIN;
+  $('ruleLnow').innerHTML=over?`Şu an: en büyük d = ${fmt(r.dMax)} cm &gt; 7 → l = ${fmt(Math.max(r.dMax,7))} cm`:`Şu an: 7 cm`;
+  $('ruleG14now').innerHTML=r.n14>0?`Şu an: ${r.n14} adet 14 cm ayırıcı`:`Şu an: ayırıcı yok`;
+  $('ruleAnow').innerHTML=over?`Şu an: a = ${fmt(r.a)} cm`:`Şu an: a = 7 cm`;
+
+  $('guzergah').disabled=r.tp.abone;
+  const dc=$('depthchip');dc.classList.toggle('abone',r.tp.abone);
+  $('depthTxt').innerHTML=r.tp.abone?`Abone: derinlik ${r.depth} · dip ${r.dip} · üst ${r.ust} cm (güzergâh pasif)`:`Derinlik ${r.depth} cm · ${r.slope>0?'Şevli (üst = dip + 20)':'Şevsiz (üst = dip)'}`;
+}
+
+function renderVolume(r){
+  $('dims').innerHTML=`Kum yüksekliği ${fmt(r.hsCm)} cm · Toplam kablo ${fmt(r.cableLen,1)} m`;
+
+  $('volresults').innerHTML=
+    `<div class="rcard hero"><div class="k">Toplam kazı hacmi</div><div class="val">${fmt3(r.Vtot)}<span class="u">m³</span></div></div>`+
+    `<div class="rcard wood"><div class="k">Kum</div><div class="val">${fmt3(r.kum)}<span class="u">m³</span></div><div class="sub2">≈ ${fmt(r.kumTon,1)} ton (×${fmt(r.kd)})</div></div>`+
+    `<div class="rcard blue"><div class="k">Dolgu malzemesi</div><div class="val">${fmt3(r.dolgu)}<span class="u">m³</span></div><div class="sub2">≈ ${fmt(r.dolguTon,1)} ton (×${fmt(r.dd)})</div></div>`;
+
+  $('bricks').innerHTML=
+    `<div class="brick b7"><span class="bico"></span><div class="btxt"><div class="bn">Ara taş (7'lik)</div><div class="bd">7×7×14 · ${r.araPts} nokta × ${r.rows} sıra</div></div><div class="bcount"><div class="bv">${r.spacer7}</div><div class="bu">adet</div></div></div>`+
+    `<div class="brick b14"><span class="bico"></span><div class="btxt"><div class="bn">Devre ayırıcı</div><div class="bd">40×14×5 · aralıksız</div></div><div class="bcount"><div class="bv">${r.sep14}</div><div class="bu">adet</div></div></div>`+
+    `<div class="brick bbims"><span class="bico"></span><div class="btxt"><div class="bn">Kılavuz Bims</div><div class="bd">50×20×6 · üstü kapatır</div></div><div class="bcount"><div class="bv">${r.bims}</div><div class="bu">adet</div></div></div>`;
+}
+
+/* ================= DİYAGRAM ================= */
+function renderDiagram(r){
+  const svg=$('svg');
+  if(items.length===0||r.G<=0){svg.innerHTML=`<text x="450" y="190" text-anchor="middle" font-family="Inter" font-size="16" fill="#9A8E7B">Kanal boş — kablo ekleyin</text>`;svg.setAttribute('viewBox','0 0 900 380');return;}
+  const OLIVE='#45502E',INK='#4A3E30',SOFT='#6E6051';
+  const depth=r.depth, TARGET_W=520,TARGET_H=290;
+  let px=Math.min(TARGET_W/r.ust,TARGET_H/depth); px=Math.max(2.2,Math.min(px,13));
+  const dipPx=r.dip*px, slope=((r.ust-r.dip)/2)*px, depthPx=depth*px;
+  const topLabelH=64,ustDimH=30,botDimH=52,rightLabelW=118,leftW=52;
+  const groundY=ustDimH+topLabelH, bottomY=groundY+depthPx;
+  const inL=leftW+slope, inR=inL+dipPx, topL=inL-slope, topR=inR+slope;
+  const W=topR+rightLabelW, H=bottomY+botDimH;
+  const xl=y=>topL+(inL-topL)*((y-groundY)/depthPx), xr=y=>topR+(inR-topR)*((y-groundY)/depthPx);
+  const band=(yt,yb,fill,st)=>`<polygon points="${xl(yt)},${yt} ${xr(yt)},${yt} ${xr(yb)},${yb} ${xl(yb)},${yb}" fill="${fill}"${st?` stroke="${st}" stroke-width="1"`:''}/>`;
+
+  const hsY=bottomY-r.hsCm*px;
+  const korY=Math.max(groundY,hsY-KOR*px);
+  let ikazY=korY-IKAZ*px; if(ikazY<groundY+8) ikazY=groundY+(korY-groundY)*0.45;
+
+  let s=`<defs>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="7.5" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10 Z" fill="${OLIVE}"/></marker>
+    <marker id="arS" markerWidth="10" markerHeight="10" refX="1.5" refY="5" orient="auto"><path d="M9,0 L0,5 L9,10 Z" fill="${OLIVE}"/></marker>
+    <pattern id="sand" width="11" height="11" patternUnits="userSpaceOnUse"><rect width="11" height="11" fill="#C9A96A"/><circle cx="2.5" cy="2.5" r="1.2" fill="#A87F42"/><circle cx="7.5" cy="7.5" r="1.2" fill="#A87F42"/><circle cx="8" cy="2.5" r="1" fill="#B48B4E"/><circle cx="3" cy="8" r="1" fill="#B48B4E"/></pattern>
+    <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#EFE9DA"/><line x1="0" y1="0" x2="0" y2="8" stroke="#DAD0BB" stroke-width="1.3"/></pattern>
+  </defs>`;
+
+  s+=`<line x1="10" y1="${groundY}" x2="${W-8}" y2="${groundY}" stroke="${INK}" stroke-width="2.5"/>`;
+  for(let x=16;x<W-10;x+=17) s+=`<line x1="${x}" y1="${groundY-9}" x2="${x+7}" y2="${groundY}" stroke="#C9BB9C" stroke-width="1.3"/>`;
+
+  // katmanlar
+  s+=band(groundY,korY,'url(#hatch)');            // dolgu
+  s+=band(hsY,bottomY,'url(#sand)','#9C7A42');     // kum
+  // kılavuz tuğla bandı (boşluksuz, ölçekli, bölme çizgili)
+  s+=band(korY,hsY,'#C3C7CD','#9AA0A8');
+  { const wl=xl((korY+hsY)/2), wr=xr((korY+hsY)/2); const step=20*px;
+    for(let x=wl+step;x<wr-1;x+=step) s+=`<line x1="${x}" y1="${korY}" x2="${x}" y2="${hsY}" stroke="#9AA0A8" stroke-width="1"/>`; }
+
+  // dış çerçeve
+  s+=`<polygon points="${topL},${groundY} ${inL},${bottomY} ${inR},${bottomY} ${topR},${groundY}" fill="none" stroke="${INK}" stroke-width="2.6" stroke-linejoin="round"/>`;
+
+  // ikaz bandı
+  s+=`<line x1="${xl(ikazY)+6}" y1="${ikazY}" x2="${xr(ikazY)-6}" y2="${ikazY}" stroke="#C62828" stroke-width="3.4"/>`;
+
+  // GAP TUĞLALARI (ölçekli) + kablolar — tek geçişte konum
+  const bedY=bottomY-BED*px;
+  let cum=0; const centers=[];
+  r.segs.forEach(sg=>{
+    const x1=inL+cum*px, x2=inL+(cum+sg.len)*px; cum+=sg.len;
+    if(sg.t==='d'){ centers.push({x:(x1+x2)/2,d:sg.len,kind:sg.kind}); return; }
+    if(sg.t==='l'&&sg.sep){ // devre ayırıcı 40×14×5 → kesitte 14 cm geniş × 5 cm yüksek
+      const hgt=5*px;
+      s+=`<rect x="${x1+1}" y="${bedY-hgt}" width="${x2-x1-2}" height="${hgt}" rx="1.5" fill="#B9BEC4" stroke="#8E949C" stroke-width="1"/>`;
+      return;
+    }
+    // 'a' uçları ve devre içi 7'lik → ara taş (7×7)
+    const hgt=7*px;
+    s+=`<rect x="${x1+1}" y="${bedY-hgt}" width="${x2-x1-2}" height="${hgt}" rx="1.5" fill="#C79A5E" stroke="#9C7638" stroke-width="1"/>`;
+    s+=`<line x1="${x1+2}" y1="${bedY-hgt+2}" x2="${x2-2}" y2="${bedY-hgt+2}" stroke="#E0BE8A" stroke-width="1.2"/>`;
+  });
+  centers.forEach(c=>{const rp=c.d*px/2,cy=bedY-rp;const col=c.kind==='YG'?'#C62828':'#1E1E1E',hi=c.kind==='YG'?'#e35d5d':'#4a4a4a';
+    s+=`<circle cx="${c.x}" cy="${cy}" r="${rp}" fill="${col}" stroke="rgba(0,0,0,.25)" stroke-width="1"/>`;
+    s+=`<circle cx="${c.x-rp*0.32}" cy="${cy-rp*0.32}" r="${Math.max(rp*0.24,1.1)}" fill="${hi}" opacity=".85"/>`;});
+
+  // sağ katman etiketleri
+  const lx=W-rightLabelW+10;
+  const leader=(y,txt,col)=>`<line x1="${xr(y)}" y1="${y}" x2="${lx-6}" y2="${y}" stroke="#C9BC9E" stroke-width="1" stroke-dasharray="3 3"/><text x="${lx}" y="${y+4}" font-family="Inter" font-size="11.5" font-weight="700" fill="${col}">${txt}</text>`;
+  s+=leader((groundY+korY)/2,'Dolgu mlz.',SOFT);
+  s+=leader(ikazY,'İkaz bandı','#C62828');
+  s+=leader((korY+hsY)/2,'Kılavuz Bims',SOFT);
+  s+=leader((hsY+bottomY)/2,'Kum','#8A6A38');
+
+  // üst ölçü etiketleri
+  const dimY=groundY-20; cum=0; const bxs=[inL];
+  r.segs.forEach(sg=>{cum+=sg.len;bxs.push(inL+cum*px);});
+  bxs.forEach(bx=>s+=`<line x1="${bx}" y1="${dimY-2}" x2="${bx}" y2="${groundY}" stroke="${SOFT}" stroke-width="1" stroke-dasharray="2 2"/>`);
+  const labColor={a:'#B5432E',d:INK}; cum=0;
+  r.segs.forEach(sg=>{const x1=inL+cum*px,x2=inL+(cum+sg.len)*px;cum+=sg.len;const w=x2-x1,mid=(x1+x2)/2;
+    let col=labColor[sg.t]||(sg.sep?'#C8763C':'#3E7CB1');
+    if(w>=10)s+=`<line x1="${x1+1}" y1="${dimY}" x2="${x2-1}" y2="${dimY}" stroke="${OLIVE}" stroke-width="1.3" marker-start="url(#arS)" marker-end="url(#ar)"/>`;
+    s+=`<text x="${mid}" y="${dimY-9}" text-anchor="middle" font-family="Inter" font-size="12.5" font-weight="800" font-style="italic" fill="${col}">${sg.t==='l'?'l':sg.t}</text>`;
+    if(sg.sep)s+=`<text x="${mid}" y="${dimY+13}" text-anchor="middle" font-family="Inter" font-size="9.5" font-weight="700" fill="#C8763C">14</text>`;});
+
+  const uY=17;
+  s+=`<line x1="${topL}" y1="${groundY}" x2="${topL}" y2="${uY-4}" stroke="${SOFT}" stroke-width="1" stroke-dasharray="2 2"/>`;
+  s+=`<line x1="${topR}" y1="${groundY}" x2="${topR}" y2="${uY-4}" stroke="${SOFT}" stroke-width="1" stroke-dasharray="2 2"/>`;
+  s+=`<line x1="${topL+1}" y1="${uY}" x2="${topR-1}" y2="${uY}" stroke="${OLIVE}" stroke-width="1.5" marker-start="url(#arS)" marker-end="url(#ar)"/>`;
+  s+=`<text x="${(topL+topR)/2}" y="${uY-5}" text-anchor="middle" font-family="Inter" font-size="12.5" font-weight="800" fill="${OLIVE}">Üst = ${fmt(r.ust)} cm</text>`;
+
+  const gY=bottomY+26;
+  s+=`<line x1="${inL}" y1="${bottomY}" x2="${inL}" y2="${gY+4}" stroke="${SOFT}" stroke-width="1" stroke-dasharray="2 2"/>`;
+  s+=`<line x1="${inR}" y1="${bottomY}" x2="${inR}" y2="${gY+4}" stroke="${SOFT}" stroke-width="1" stroke-dasharray="2 2"/>`;
+  s+=`<line x1="${inL+1}" y1="${gY}" x2="${inR-1}" y2="${gY}" stroke="${OLIVE}" stroke-width="1.7" marker-start="url(#arS)" marker-end="url(#ar)"/>`;
+  s+=`<text x="${(inL+inR)/2}" y="${gY+19}" text-anchor="middle" font-family="Inter" font-size="13" font-weight="800" fill="${OLIVE}">Dip = ${fmt(r.dip)} cm</text>`;
+
+  const dx=20;
+  s+=`<line x1="${dx}" y1="${groundY}" x2="${dx}" y2="${bottomY}" stroke="${OLIVE}" stroke-width="1.5" marker-start="url(#arS)" marker-end="url(#ar)"/>`;
+  s+=`<text x="${dx-5}" y="${(groundY+bottomY)/2}" text-anchor="middle" font-family="Inter" font-size="11.5" font-weight="700" fill="${OLIVE}" transform="rotate(-90 ${dx-5} ${(groundY+bottomY)/2})">${fmt(depth)} cm derinlik</text>`;
+
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.innerHTML=s;
+}
+
+/* ================= YATAY SONDAJ (HDD) ================= */
+const PACK={1:1,2:2,3:2.154,4:2.414,5:2.701,6:3,7:3,8:3.304,9:3.613,10:3.813,11:3.923,12:4.029,13:4.236,14:4.328};
+const HDD_CLS=[
+  {mm:150,dev:'–',kab:'1',range:'Çap ≤ 15 cm delik açılması',rshort:'Kablo çapı ≤ 15 cm',label:['Tek','Kablo'],col:'#3E7CB1'},
+  {mm:300,dev:'1',kab:'3-4',range:'15 cm < Çap ≤ 35 cm delik açılması',rshort:'15 < Çap ≤ 35 cm',label:['1 Devre','(3-4 Kablo)'],col:'#C8763C'},
+  {mm:500,dev:'2',kab:'5-8',range:'35 cm < Çap ≤ 60 cm delik açılması',rshort:'35 < Çap ≤ 60 cm',label:['2 Devre','(5-8 Kablo)'],col:'#9C6B3F'},
+  {mm:600,dev:'3',kab:'9-14',range:'60 cm ≤ Çap delik açılması',rshort:'60 cm ≤ Çap',label:['3 Devre','(9-14 Kablo)'],col:'#B5432E'}
+];
+let hddItems=[{kind:'YG',id:'YG:al:1x150/25'}];
+const MAXCAB=14;
+const hddCabCount=()=>hddItems.reduce((s,it)=>s+(it.kind==='YG'?3:1),0);
+
+function computeHDD(){
+  const cab=[]; hddItems.forEach(it=>{const n=it.kind==='YG'?3:1;for(let i=0;i<n;i++)cab.push({d:dOf(it),kind:it.kind});});
+  const n=cab.length, devre=hddItems.filter(x=>x.kind==='YG').length;
+  const dMax=n?Math.max(...cab.map(c=>c.d)):0;
+  const dEff=n?Math.sqrt(cab.reduce((s,c)=>s+c.d*c.d,0)/n):0;
+  const D=n?Math.max(dMax,PACK[Math.min(n,14)]*dEff):0;
+  const byD=D<=15?1:D<=35?2:D<=60?3:4;
+  const byN=n<=1?1:n<=4?2:n<=8?3:4;
+  const byDev=devre<=0?1:devre===1?2:devre===2?3:4;
+  const cls=n?Math.max(byD,byN,byDev):1;
+  return {cab,n,devre,dMax,dEff,D,cls,mm:HDD_CLS[cls-1].mm,over:n>14};
+}
+
+function renderHDDList(){
+  const el=$('hddlist');
+  if(hddItems.length===0){el.innerHTML=`<div class="cempty">Kablo yok — <b>YG Devresi</b> veya <b>AG Kablo</b> ekleyin.</div>`;return;}
+  el.innerHTML=hddItems.map((it,i)=>{const opts=it.kind==='YG'?YG_OPTS:AG_OPTS,d=dOf(it),kc=it.kind.toLowerCase();
+    return `<div class="crow"><span class="cdot ${kc}"></span><span class="cbadge ${kc}">${it.kind}</span>
+      <select data-hi="${i}">${opts}</select><span class="dchip">d = ${fmt(d)} cm</span>
+      ${it.kind==='YG'?'<span class="cnote">×3</span>':''}<button class="del" data-hdel="${i}" title="Kaldır">×</button></div>`;}).join('');
+  el.querySelectorAll('select').forEach(sel=>{const i=+sel.dataset.hi;sel.value=hddItems[i].id;
+    sel.addEventListener('change',()=>{hddItems[i].id=sel.value;update();});});
+  el.querySelectorAll('[data-hdel]').forEach(btn=>btn.addEventListener('click',()=>{hddItems.splice(+btn.dataset.hdel,1);update();}));
+}
+
+function renderHDD(){
+  const h=computeHDD();
+  renderHDDList();
+  const c=HDD_CLS[h.cls-1];
+  $('hddcards').innerHTML=
+    `<div class="rcard hero"><div class="k">Ödemeye esas delik çapı</div><div class="val">${h.n?h.mm:'—'}<span class="u">mm</span></div></div>`+
+    `<div class="rcard wood"><div class="k">Tahmini demet çapı</div><div class="val">${fmt(h.D)}<span class="u">cm</span></div></div>`+
+    `<div class="rcard"><div class="k">Devre sayısı (YG)</div><div class="val">${h.devre}</div></div>`+
+    `<div class="rcard"><div class="k">Toplam kablo</div><div class="val">${h.n}<span class="u">/ ${MAXCAB}</span></div></div>`;
+  const kalan=MAXCAB-h.n;
+  $('hddwarnbox').innerHTML = kalan<=0
+    ? `<div class="capnote full">Maksimum ${MAXCAB} kablo — kapasite dolu, yeni kablo eklenemez.</div>`
+    : `<div class="capnote">Kalan kapasite: ${kalan} kablo (maks. ${MAXCAB})</div>`;
+  $('hddAddYG').disabled = h.n+3>MAXCAB;
+  $('hddAddAG').disabled = h.n+1>MAXCAB;
+
+  const tb=document.querySelector('#hddtable tbody');
+  tb.innerHTML=HDD_CLS.map((r,i)=>`<tr class="${h.n&&i===h.cls-1?'on':''}"><td>${r.range}</td><td>${r.mm}</td><td>${r.dev}</td><td>${r.kab}</td></tr>`).join('');
+
+  renderHDDsvg(h);
+}
+
+function renderHDDsvg(h){
+  const svg=$('hddsvg');
+  const s=2.35, pad=14, gapCol=12, bw=122, bh=22;
+  const rcm=[7.5,15,25,30], rpx=rcm.map(r=>r*s);
+  const cols=rpx.map(r=>Math.max(2*r+10, bw+16));       // sütun ≥ rozet genişliği
+  const maxR=rpx[3], top=20, cy=top+maxR;
+  let W=pad*2+gapCol*3; cols.forEach(c=>W+=c);
+  const rangeY=cy+maxR+24, badgeY=rangeY+12, H=badgeY+34;
+  let x=pad, out='';
+  out+=`<defs><radialGradient id="bore" cx="38%" cy="34%" r="75%"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#F0EADA"/></radialGradient></defs>`;
+  out+=`<line x1="0" y1="${cy}" x2="${W}" y2="${cy}" stroke="#E2D9C5" stroke-width="1" stroke-dasharray="4 6"/>`;
+  HDD_CLS.forEach((c,i)=>{
+    const r=rpx[i], col=cols[i], cx=x+col/2; x+=col+gapCol;
+    const active=h.n&&i===h.cls-1;
+    out+=`<circle cx="${cx}" cy="${cy}" r="${r+3}" fill="none" stroke="${active?'#45502E':'#8A7B64'}" stroke-width="${active?4:3}"/>`;
+    out+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#bore)" stroke="#B7AA8F" stroke-width="1"/>`;
+    if(active) out+=`<circle cx="${cx}" cy="${cy}" r="${r+8}" fill="none" stroke="#45502E" stroke-width="1" stroke-dasharray="3 5" opacity=".55"/>`;
+    const f=[9,10.5,12,12.5][i], ly=cy-r+f+7;
+    out+=`<text x="${cx}" y="${ly}" text-anchor="middle" font-family="Inter" font-size="${f}" font-weight="800" fill="#4A3E30">${c.label[0]}</text>`;
+    out+=`<text x="${cx}" y="${ly+f+2}" text-anchor="middle" font-family="Inter" font-size="${f-1.5}" font-weight="600" fill="#6E6051">${c.label[1]}</text>`;
+    if(active&&h.n){
+      const inner=r-4;
+      const pts=[]; const sorted=[...h.cab].sort((a,b)=>b.d-a.d);
+      sorted.forEach((c2,idx)=>{
+        const rp=c2.d/2*s;
+        let rad = h.n===1?0: inner*Math.sqrt((idx+0.5)/h.n)*0.86;
+        rad=Math.min(rad, Math.max(0,inner-rp-1));
+        const a=idx*2.39996+0.6;
+        pts.push({cx:cx+rad*Math.cos(a), cy:cy+rad*Math.sin(a)+r*0.12, rp, kind:c2.kind});
+      });
+      if(h.D>0&&h.D/2*s<inner) out+=`<circle cx="${cx}" cy="${cy+r*0.12}" r="${h.D/2*s}" fill="none" stroke="#3E7CB1" stroke-width="1" stroke-dasharray="4 4" opacity=".8"/>`;
+      pts.forEach(p=>{const col=p.kind==='YG'?'#C62828':'#1E1E1E',hi=p.kind==='YG'?'#e35d5d':'#4a4a4a';
+        out+=`<circle cx="${p.cx}" cy="${p.cy}" r="${p.rp}" fill="${col}" stroke="rgba(0,0,0,.3)" stroke-width="1"/>`;
+        out+=`<circle cx="${p.cx-p.rp*0.3}" cy="${p.cy-p.rp*0.3}" r="${Math.max(p.rp*0.24,0.9)}" fill="${hi}" opacity=".85"/>`;});
+    }
+    out+=`<text x="${cx}" y="${rangeY}" text-anchor="middle" font-family="Inter" font-size="10" font-weight="600" fill="#6E6051">${c.rshort}</text>`;
+    out+=`<rect x="${cx-bw/2}" y="${badgeY}" width="${bw}" height="${bh}" rx="5" fill="#FFFFFF" stroke="${c.col}" stroke-width="${active?2.5:1.5}"/>`;
+    out+=`<text x="${cx}" y="${badgeY+15}" text-anchor="middle" font-family="Inter" font-size="10.5" font-weight="800" fill="${c.col}">Delik Çapı: ${c.mm} mm</text>`;
+  });
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.innerHTML=out;
+}
+
+/* ================= SEKMELER ================= */
+function showTab(which){
+  const map={kanal:'view-kanal',hdd:'view-hdd',info:'view-info'};
+  Object.entries(map).forEach(([k,id])=>{document.getElementById(id).hidden=(k!==which);});
+  document.getElementById('tabKanal').classList.toggle('active',which==='kanal');
+  document.getElementById('tabHdd').classList.toggle('active',which==='hdd');
+  document.getElementById('tabInfo').classList.toggle('active',which==='info');
+}
+
+function update(){const r=compute();renderFormula();renderList();renderResults(r);renderVolume(r);renderDiagram(r);renderHDD();}
+$('addYG').addEventListener('click',()=>{items.push({kind:'YG',id:'YG:cu:1x150/25'});update();});
+$('addAG').addEventListener('click',()=>{items.push({kind:'AG',id:'AG:3:3x150'});update();});
+['guzergah','tip','len','interval','kumDens','dolguDens'].forEach(id=>{const e=$(id);e.addEventListener('change',update);e.addEventListener('input',update);});
+$('hddAddYG').addEventListener('click',()=>{if(hddCabCount()+3>MAXCAB)return;hddItems.push({kind:'YG',id:'YG:cu:1x150/25'});update();});
+$('hddAddAG').addEventListener('click',()=>{if(hddCabCount()+1>MAXCAB)return;hddItems.push({kind:'AG',id:'AG:3:3x150'});update();});
+$('tabKanal').addEventListener('click',()=>showTab('kanal'));
+$('tabHdd').addEventListener('click',()=>showTab('hdd'));
+$('tabInfo').addEventListener('click',()=>showTab('info'));
+$('pdfBtn').addEventListener('click',()=>window.print());
+update();
+</script>
+</body>
+</html>
